@@ -1,6 +1,7 @@
 'use strict';
 
 let fs = require('fs'),
+    mongojs = require('mongojs'),
     colors = require('colors'),
     express = require('express'),
     app = express(),
@@ -13,13 +14,12 @@ let fs = require('fs'),
     cookieParser = require('cookie-parser'),
     Client = require('node-rest-client').Client;
 
+var db = mongojs('gps', ['gps'])
 var client = new Client();
 
-app.use(express.static('public'))
+
 app.use(cookieParser());
 
-app.use('/bower_components', express.static(__dirname + '/bower_components'));
-app.use('/node_modules', express.static(__dirname + '/node_modules'));
 
 app.use(bodyParser.json());
 
@@ -27,12 +27,9 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 
-//app.use(function (req, res, next) {
-//    res.header("Access-Control-Allow-Origin", "*");
-//    res.header('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
-//    res.header("Access-Control-Allow-Headers", "Origin, X-Requested-With, Content-Type, Accept");
-//    next();
-//});
+app.use('/bower_components', express.static(__dirname + '/bower_components'));
+app.use('/node_modules', express.static(__dirname + '/node_modules'));
+app.use(express.static('public'));
 
 app.all('*', function (req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
@@ -64,25 +61,104 @@ app.get('/', function (req, res) {
 
 });
 
-app.get('/on-ramp', function (req, res) {
+app.get('/homebrew', function (req, res) {
 
     console.log('\n');
     console.log('******* INCOMING GET REQUEST - Load Template *******'.black.bgWhite);
     console.log('\n');
 
-    //  var html = fs.readFileSync('static/views/on-ramp.html');
-    var onRamp = fs.readFileSync('http://go.nthrive.com/rs/099-EMG-811/images/nThrive-banner-001.html');
-    res.end(onRamp);
+    db.gps.find(function (err, docs) {
+        // console.log(docs)
+        res.json(docs)
+
+    })
 
 });
 
-app.get('/nThrive', function (req, res) {
+app.post('/homebrew', function (req, res) {
 
     console.log('\n');
-    console.log('******* INCOMING GET REQUEST - Load Template *******'.black.bgWhite);
+    console.log('******* INCOMING POST REQUEST - Load Template *******'.black.bgWhite);
+    console.log('\n');
+    // console.log(req.body); // 
     console.log('\n');
 
-    var html = fs.readFileSync('public/views/on-ramp.html');
-    res.end(html);
+    db.gps.insert(req.body, function (err, docs) {
+
+        console.log(docs)
+        res.json(docs)
+
+    })
+
+});
+
+app.delete('/homebrew/:id', function (req, res) {
+
+    let id = req.params.id;
+    console.log('\n');
+    console.log('******* INCOMING DELETE REQUEST - Load Template *******'.black.bgWhite);
+    console.log('\n');
+    console.log(id);
+    console.log('\n');
+
+    db.gps.remove({
+        _id: mongojs.ObjectId(id)
+    }, function (err, docs) {
+
+        console.log(docs)
+        res.json(docs)
+
+    })
+
+});
+
+app.get('/homebrew/:id', function (req, res) {
+
+    let id = req.params.id;
+    console.log('\n');
+    console.log('******* INCOMING CUSTOM GET REQUEST - Load Template *******'.black.bgWhite);
+    console.log('\n');
+    console.log(id);
+    console.log('\n');
+
+    db.gps.findOne({
+        _id: mongojs.ObjectId(id)
+    }, function (err, docs) {
+        console.log(docs)
+        res.json(docs);
+    });
+
+});
+
+app.put('/homebrew/:id', function (req, res) {
+
+    let id = req.params.id;
+    console.log('\n');
+    console.log('******* INCOMING CUSTOM PUT REQUEST - Load Template *******'.black.bgWhite);
+    console.log('\n');
+    // console.log(id);
+    console.log('\n');
+    console.log(req.body.name);
+    console.log('\n');
+
+    var asd = {
+        _id: mongojs.ObjectId(id)
+    };
+
+    db.gps.findAndModify({
+        query: {
+            _id: mongojs.ObjectId(id)
+        },
+        update: {
+            $set: {
+                lat: req.body.lat,
+                long: req.body.long
+            }
+        },
+        new: true
+    }, function (err, docs) {
+        console.log(docs)
+        res.json(docs);
+    });
 
 });

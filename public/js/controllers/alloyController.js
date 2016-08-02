@@ -1,226 +1,123 @@
 'use strict';
 
-console.log("OUTSIDE alloyController");
+console.log("OUTSIDE: alloy Controller");
 
-angular.module("mainModule")
-    .controller('alloyController', function ($scope, instagramService, twitterService, sidebarService, alloy) {
+app.controller('alloyController', function ($scope, $http, alloyService) {
 
-        console.log("INSIDE alloyController");
+    console.log("INSIDE: alloy Controller");
 
-        $scope.onSwipeLeft = function (ev) {
-            alert('You swiped left!!');
-        };
-        $scope.onSwipeRight = function (ev) {
-            alert('You swiped right!!');
-        };
+    $scope.refresh = function () {
+
+        alloyService.getHomeBrew(function (response) {
+
+            console.log("_________________________________");
+            console.log("getHomebrew response.DATA: ");
+            console.info(response);
+            console.log("_________________________________");
+            $scope.gps = response;
+
+        });
+    }
+
+    $scope.refresh();
+
+    $scope.add = function () {
+
+        console.log($scope.coord)
+
+        alloyService.postHomeBrew($scope.coord, function (response) {
+
+            console.log("_________________________________");
+            console.log("postHomeBrew SUCCESS");
+            $scope.refresh();
+        })
+
+    }
 
 
-        $scope.windowInfoWithToken = instagramService.getWindowInfo();
-        $scope.getTwitterDropDownNumberIndex = sidebarService.getTwitterDropDownNumberIndex();
+    $scope.remove = function (id) {
 
-        $scope.getIgandTwitterApiData = function () {
+        console.log(id);
 
-            if ($scope.inputSearchTweetsAndInstagramQuery.length >= 1) {
+        alloyService.delHomeBrew(id, function (response) {
 
-                instagramService.tapInstaExtended($scope.windowInfoWithToken, $scope.inputSearchTweetsAndInstagramQuery, function (response) {
+            console.log("_________________________________");
+            console.log("deleteHomeBrew SUCCESS");
+            $scope.refresh();
+        })
+    }
 
-                    // console.info(response.data);
-                    $scope.instagramData = response.data;
+    $scope.edit = function (id) {
 
-                });
+        console.log(id)
 
-                alloy.getSpotifyDATA({
+        alloyService.getSpecificHomeBrew(id, function (response) {
 
-                    q: $scope.inputSearchTweetsAndInstagramQuery,
-                    count: 20
+            console.log("_________________________________");
+            console.log("getSpecificHomeBrew SUCCESS");
+            console.log(response);
+            $scope.coord = response.data;
+            $scope.refresh();
 
-                }, function (response) {
+        })
+    }
 
-                    $scope.spotifyData = response.data;
+    $scope.update = function () {
 
-                    console.log("_________________________________");
-                    console.log("SPOTIFY response.DATA: ");
-                    console.info(response.data);
-                    console.log("SPOTIFY response: ");
-                    console.info(response);
-                    console.log("_________________________________");
+        console.log($scope.coord._id);
+        console.log($scope.coord);
 
-                });
+        alloyService.putHomeBrew($scope.coord._id, $scope.coord, function (response) {
 
-                sidebarService.getTwitterData($scope.inputSearchTweetsAndInstagramQuery, function (response) {
+            console.log("_________________________________");
+            console.log("updateHomeBrew SUCCESS");
+            console.log(response);
+            $scope.refresh();
 
-                    // for user timelines   var tweets = response;
-                    // for tags var tweets = response.data;
+        })
+    }
 
-                    var tweets = response;
-                    if (sidebarService.getTwitterDropDownNumberIndex() === 1) {
-                        tweets = response;
-                    } else {
-                        tweets = response.data;
-                    }
+    $scope.deselect = function () {
 
-                    console.log(tweets);
+        $scope.contact = "";
 
-                    $scope.twitterData = tweets;
+    }
 
-                });
-            }
+    /*
+    
+    THIS IS WHERE I START TO MAKE THE MAGIC HAPPEN!
+    
+    */
 
-        };
+    setInterval(function () {
 
-        $scope.doSomething = function () {
+        $scope.high = 180;
+        $scope.lo = -150;
+        $scope.randomLat = Math.floor((Math.random() * $scope.high) + $scope.lo);
+        $scope.randomLong = Math.floor((Math.random() * $scope.high) + $scope.lo);
 
-            alloy.doSomethingExtended(function (response) {
-
-                $scope.doSomethingData = response.data;
-
-                //                for (var key in response) {
-                //
-                //                    console.log('KEY: ' + key)
-                //                    console.log('RESPONSE: ' + response[key])
-                //                }
-
-            });
-
-        };
-
-        $scope.tagQuery = function (instaQuery) {
-
-            instagramService.tapInstaExtended($scope.windowInfoWithToken, instaQuery, function (response) {
-
-                $scope.instagramData = response.data;
-
-            });
-
-        };
-
-        $scope.twitterTagQuery = function (twitterTagSearch) {
-            sidebarService.setTwitterDropDownNumberIndex(2);
-
-            sidebarService.getTwitterData(twitterTagSearch, function (response) {
-
-                // for user timelines   var tweets = response;
-                // for tags var tweets = response.data;
-
-                var tweets = response;
-
-                tweets = response.data;
-
-                console.log("_________________________________");
-                console.log("twitterTagQuery response.DATA: ");
-                console.info(response.data);
-                console.log("_________________________________");
-                $scope.twitterData = tweets;
-
-            });
-
-        };
-        $scope.twitterUserNameQuery = function (twitterTagSearch) {
-            sidebarService.setTwitterDropDownNumberIndex(1);
-
-            sidebarService.getTwitterData(twitterTagSearch, function (response) {
-
-                // for user timelines   var tweets = response;
-                // for tags var tweets = response.data;
-
-                var tweets = response;
-                //                if (index === 1) {
-                //                    tweets = response.data;
-                //                } else {
-                //                    tweets = response;
-                //                }
-
-                console.log("_________________________________");
-                console.log("twitterTagQuery response.DATA: ");
-                console.info(response.data);
-                console.log("_________________________________");
-                $scope.twitterData = tweets;
-
-            });
-
-        };
-
-        $scope.hideThisDiv = false;
-
-        $scope.customOverFlow = function (value) {
-
-            if ($scope.hideThisDiv) {
-
-                return {
-                    "overflow": 'auto'
-                }
-
-            } else {
-
-                return {
-                    "overflow": 'hidden'
-                }
-
-            }
+        $scope.customCoordinates = {
+            lat: $scope.randomLat,
+            long: $scope.randomLong
         }
+        console.info('Lat: ' + $scope.randomLat + ' Long: ' + $scope.randomLong);
+        $scope.customAdd();
 
-        $scope.changeThisSearchTweets = function () {
+    }, 10000);
 
-            alloy.getTwitterAndInstagramDataByTags({
+    $scope.customAdd = function () {
 
-                q: $scope.inputSearchTweetsAndInstagramQuery,
-                count: 25
+        console.log($scope.coord)
 
-            }, function (response) {
+        alloyService.postHomeBrew($scope.customCoordinates, function (response) {
 
-                var tweets = response.data;
-                console.log(tweets);
-                $scope.twitterData = tweets;
-            });
+            console.log("_________________________________");
+            console.log("postHomeBrew SUCCESS");
+            $scope.refresh();
+        })
 
-        };
-
-        twitterService.getTwitter(function (response) {
-
-            var tweets = response.data;
-            console.log(tweets);
-            console.log($scope.hideThisDiv);
-            $scope.twitterData = {};
-            $scope.twitterData.data = tweets;
-
-        });
-
-        alloy.getSpotify($scope.windowInfoWithToken, function (response) {
-
-            $scope.spotifyData = response.data;
-            console.info('getSPOTIFY:');
-            console.info(response.data);
-            console.info('getSPOTIFY:');
+    }
 
 
-        });
 
-        instagramService.tapInsta($scope.windowInfoWithToken, function (response) {
-
-            $scope.instagramData = response.data;
-
-            // debugger;
-
-            if (!response.data.access_token == undefined) {
-
-                $scope.instagramDataWithToken = response.data.access_token;
-
-            } else {
-                $scope.hideThisDiv = true;
-            }
-
-            console.warn('tapInsta:');
-            console.info(response.data);
-            console.warn('tapInsta:');
-
-        });
-
-
-        $scope.forLizz = function () {
-
-
-            $scope.hideThisDiv = true;
-        }
-
-
-    });
+});
