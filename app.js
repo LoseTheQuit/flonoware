@@ -17,6 +17,24 @@ let fs = require('fs'),
 var db = mongojs('gps', ['gps'])
 var client = new Client();
 
+
+
+let dbConnectionString = '';
+
+var ignitionSwitch = true;
+
+if (ignitionSwitch) {
+
+    dbConnectionString = process.env.MONGOLAB_URI;
+
+} else {
+
+    dbConnectionString = 'gps';
+}
+
+var db = mongojs(dbConnectionString, ['gps']);
+
+
 app.use(cookieParser());
 
 app.use(bodyParser.json());
