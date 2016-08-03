@@ -14,10 +14,7 @@ let fs = require('fs'),
     cookieParser = require('cookie-parser'),
     Client = require('node-rest-client').Client;
 
-var db = mongojs('gps', ['gps'])
 var client = new Client();
-
-
 
 let dbConnectionString = '';
 
@@ -25,7 +22,7 @@ var ignitionSwitch = true;
 
 if (ignitionSwitch) {
 
-    dbConnectionString = process.env.MONGOLAB_URI;
+    dbConnectionString = 'mongodb://heroku_td9mdp69:vl3o3hsj6e61ib7kiaul0vsjrd@ds139725.mlab.com:39725/heroku_td9mdp69';
 
 } else {
 
