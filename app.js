@@ -17,9 +17,7 @@ let fs = require('fs'),
 var db = mongojs('gps', ['gps'])
 var client = new Client();
 
-
 app.use(cookieParser());
-
 
 app.use(bodyParser.json());
 
