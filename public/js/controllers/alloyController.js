@@ -21,6 +21,21 @@ app.controller('alloyController', function ($scope, $http, alloyService) {
 
     $scope.refresh();
 
+
+    $scope.addCustom = function () {
+
+        console.log($scope.coord)
+
+        alloyService.postHomeBrew($scope.coord, function (response) {
+
+            console.log("_________________________________");
+            console.log("postHomeBrew SUCCESS");
+            $scope.refresh();
+        })
+
+    }
+
+
     $scope.add = function () {
 
         console.log($scope.coord)

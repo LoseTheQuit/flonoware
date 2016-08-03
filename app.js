@@ -18,7 +18,7 @@ var client = new Client();
 
 let dbConnectionString = '';
 
-var ignitionSwitch = true;
+var ignitionSwitch = false;
 
 if (ignitionSwitch) {
 
@@ -71,6 +71,22 @@ app.get('/', function (req, res) {
 
     var html = fs.readFileSync('public/views/base.html');
     res.end(html);
+
+});
+
+app.get('/homebrew/native', function (req, res) {
+
+    console.log('\n');
+    console.log('******* INCOMING GET REQUEST - Load Template *******'.black.bgWhite);
+    console.log('\n');
+
+    db.gps.find().limit(1).sort({
+        _id: -1
+    }, function (err, docs) {
+
+        console.log(docs);
+        res.json(docs)
+    })
 
 });
 
