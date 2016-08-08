@@ -18,7 +18,7 @@ var client = new Client();
 
 let dbConnectionString = '';
 
-var ignitionSwitch = true;
+var ignitionSwitch = false;
 
 if (ignitionSwitch) {
 
@@ -87,6 +87,38 @@ app.get('/outermost', function (req, res) {
         console.log(docs);
         res.json(docs)
     })
+
+});
+
+app.get('/del-all', function (req, res) {
+
+    console.log('\n');
+    console.log('******* INCOMING del-all REQUEST - Load Template *******'.black.bgWhite);
+    console.log('\n');
+
+    db.gps.remove(function (err, docs) {
+        if (err) {
+            throw err;
+        }
+        res.json(docs)
+    });
+
+});
+
+app.get('/get-count', function (req, res) {
+
+    console.log('\n');
+    console.log('******* INCOMING db.gps.count() REQUEST - Load Template *******'.black.bgWhite);
+    console.log('\n');
+    console.log(db.stats());
+    console.log('\n');
+
+    var totalInCollection = db.gps.count({
+
+    }, function (err, docs) {
+        console.log(docs)
+        res.json(docs);
+    });
 
 });
 

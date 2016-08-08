@@ -44,7 +44,6 @@ app.service('alloyService', function ($http) {
         .then(callback);
 
     };
-
     this.getSpecificHomeBrew = function (id, callback) {
         console.log("success from getSpecificHomeBrew");
 
@@ -78,6 +77,31 @@ app.service('alloyService', function ($http) {
             url: '/homebrew/' + id,
             method: "PUT",
             data: contact
+        })
+
+        .then(callback);
+
+    };
+
+    this.delAllHomeBrew = function (id, callback) {
+        console.log("success from delHomeBrew");
+
+        $http({
+            url: '/del-all/',
+            method: "GET"
+        })
+
+        .then(callback);
+
+    };
+
+    this.getHomeBrewCount = function (callback) {
+
+        console.log("success from getHomeBrewCount");
+
+        $http({
+            url: '/get-count',
+            method: "GET"
         })
 
         .then(callback);

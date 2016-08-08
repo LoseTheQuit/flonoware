@@ -6,6 +6,21 @@ app.controller('alloyController', function ($scope, $http, alloyService) {
 
     console.log("INSIDE: alloy Controller");
 
+    $scope.collectionPlate = function () {
+
+        alloyService.getHomeBrewCount(function (response) {
+
+            console.log("_________________________________");
+            console.log("getHomebrew response.DATA: ");
+            console.info(response);
+            console.log("_________________________________");
+            $scope.totalAmountOfItemsInThisColletection = response.data;
+
+        });
+
+        $scope.refresh();
+    }
+
     $scope.refresh = function () {
 
         alloyService.getHomeBrew(function (response) {
@@ -17,9 +32,29 @@ app.controller('alloyController', function ($scope, $http, alloyService) {
             $scope.gps = response;
 
         });
+
     }
 
+    $scope.collectionPlate();
+
     $scope.refresh();
+
+    $scope.deleteAll = function () {
+
+        alloyService.delAllHomeBrew(function (response) {
+
+            console.log("_________________________________");
+            console.log("getHomebrew response.DATA: ");
+            console.info(response);
+            console.log("_________________________________");
+            $scope.gps = response;
+
+        });
+
+        $scope.refresh();
+    }
+
+
 
 
     $scope.addCustom = function () {
@@ -99,30 +134,42 @@ app.controller('alloyController', function ($scope, $http, alloyService) {
     }
 
     /*
-    
+     
     THIS IS WHERE I START TO MAKE THE MAGIC HAPPEN!
     
     */
 
-    setInterval(function () {
+    setTimeout(function () {
 
-        $scope.high = 180;
-        $scope.lo = -150;
-        $scope.randomLat = Math.floor((Math.random() * $scope.high) + $scope.lo);
-        $scope.randomLong = Math.floor((Math.random() * $scope.high) + $scope.lo);
+        setInterval(function () {
 
-        $scope.customCoordinates = {
-            lat: $scope.randomLat,
-            long: $scope.randomLong
-        }
-        console.info('Lat: ' + $scope.randomLat + ' Long: ' + $scope.randomLong);
-        $scope.customAdd();
+            $scope.high = 180;
+            $scope.lo = -150;
+            $scope.randomLat = Math.floor((Math.random() * $scope.high) + $scope.lo);
+            $scope.randomLong = Math.floor((Math.random() * $scope.high) + $scope.lo);
 
-    }, 10000);
+            $scope.customCoordinates = {
+                lat: $scope.randomLat,
+                long: $scope.randomLong
+            }
+
+            // console.info('Lat: ' + $scope.randomLat + ' Long: ' + $scope.randomLong);
+
+            if ($scope.totalAmountOfItemsInThisColletection <= 5000) {
+                $scope.customAdd();
+            } else {
+
+                // $scope.deleteAll();
+            }
+
+        }, 500);
+
+    }, 3000);
 
     $scope.customAdd = function () {
 
         console.log($scope.coord)
+
 
         alloyService.postHomeBrew($scope.customCoordinates, function (response) {
 
