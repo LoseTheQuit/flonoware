@@ -18,7 +18,7 @@ var client = new Client();
 
 let dbConnectionString = '';
 
-var ignitionSwitch = false;
+var ignitionSwitch = true;
 
 if (ignitionSwitch) {
 
