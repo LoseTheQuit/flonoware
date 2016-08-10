@@ -18,7 +18,7 @@ var client = new Client();
 
 let dbConnectionString = '';
 
-var ignitionSwitch = true;
+var ignitionSwitch = false;
 
 if (ignitionSwitch) {
 
@@ -110,7 +110,9 @@ app.get('/get-count', function (req, res) {
     console.log('\n');
     console.log('******* INCOMING db.gps.count() REQUEST - Load Template *******'.black.bgWhite);
     console.log('\n');
-    console.log(db.stats());
+    // console.log(db.stats());
+    //    console.log(db.gps.stats());
+    //  console.log(db.getCollectionNames());
     console.log('\n');
 
     var totalInCollection = db.gps.count({
