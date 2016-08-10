@@ -166,19 +166,19 @@ app.controller('alloyController', function ($scope, $http, alloyService) {
     //
     //    }, 3000);
 
-    $scope.customAdd = function () {
-
-        console.log($scope.coord)
-
-
-        alloyService.postHomeBrew($scope.customCoordinates, function (response) {
-
-            console.log("_________________________________");
-            console.log("postHomeBrew SUCCESS");
-            $scope.refresh();
-        })
-
-    }
+    //    $scope.customAdd = function () {
+    //
+    //        console.log($scope.coord)
+    //
+    //
+    //        alloyService.postHomeBrew($scope.customCoordinates, function (response) {
+    //
+    //            console.log("_________________________________");
+    //            console.log("postHomeBrew SUCCESS");
+    //            $scope.refresh();
+    //        })
+    //
+    //    }
 
 
 
