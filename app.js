@@ -4,7 +4,7 @@ let fs = require('fs'),
     mongojs = require('mongojs'),
     colors = require('colors'),
     express = require('express'),
-    app = express(),
+    app = express(),   
     bodyParser = require('body-parser'),
     https = require('https'),
     http = require('http'),
@@ -143,7 +143,7 @@ app.post('/homebrew', function (req, res) {
     console.log('\n');
     console.log('******* INCOMING POST REQUEST - Load Template *******'.black.bgWhite);
     console.log('\n');
-    // console.log(req.body); // 
+    // console.log(req.body); //
     console.log('\n');
 
     db.gps.insert(req.body, function (err, docs) {
