@@ -156,7 +156,7 @@ app.controller('alloyController', function ($scope, $http, alloyService) {
             // console.info('Lat: ' + $scope.randomLat + ' Long: ' + $scope.randomLong);
 
             $scope.collectionPlate();
-            if ($scope.totalAmountOfItemsInThisColletection <= 10) {
+            if ($scope.totalAmountOfItemsInThisColletection <= 100) {
                 $scope.customAdd();
             } else {
                 $scope.deleteAll();
