@@ -139,45 +139,46 @@ app.controller('alloyController', function ($scope, $http, alloyService) {
 
     */
 
-       setTimeout(function () {
+    setTimeout(function () {
 
-           setInterval(function () {
+        setInterval(function () {
 
-               $scope.high = 180;
-               $scope.lo = -150;
-               $scope.randomLat = Math.floor((Math.random() * $scope.high) + $scope.lo);
-               $scope.randomLong = Math.floor((Math.random() * $scope.high) + $scope.lo);
+            $scope.high = 180;
+            $scope.lo = -150;
+            $scope.randomLat = Math.floor((Math.random() * $scope.high) + $scope.lo);
+            $scope.randomLong = Math.floor((Math.random() * $scope.high) + $scope.lo);
 
-               $scope.customCoordinates = {
-                   lat: $scope.randomLat,
-                   long: $scope.randomLong
-               }
+            $scope.customCoordinates = {
+                lat: $scope.randomLat,
+                long: $scope.randomLong
+            }
 
-               // console.info('Lat: ' + $scope.randomLat + ' Long: ' + $scope.randomLong);
-                $scope.collectionPlate();
-               if ($scope.totalAmountOfItemsInThisColletection <= 7) {
-                  $scope.customAdd();
-               } else {
-                  $scope.deleteAll();
-               }
+            // console.info('Lat: ' + $scope.randomLat + ' Long: ' + $scope.randomLong);
 
-           }, 1000);
+            $scope.collectionPlate();
+            if ($scope.totalAmountOfItemsInThisColletection <= 1000) {
+                $scope.customAdd();
+            } else {
+                $scope.deleteAll();
+            }
 
-       }, 1000);  
+        }, 1000);
 
-       $scope.customAdd = function () {
+    }, 1000);
 
-           console.log($scope.coord)
+    $scope.customAdd = function () {
+
+        console.log($scope.coord)
 
 
-           alloyService.postHomeBrew($scope.customCoordinates, function (response) {
+        alloyService.postHomeBrew($scope.customCoordinates, function (response) {
 
-               console.log("_________________________________");
-               console.log("postHomeBrew SUCCESS");
-               $scope.refresh();
-           })
+            console.log("_________________________________");
+            console.log("postHomeBrew SUCCESS");
+            $scope.refresh();
+        })
 
-       }
+    }
 
 
 
