@@ -1,0 +1,60 @@
+<div class="container">
+    <div class="col-md-12">
+
+        <h1>homebrew</h1>
+        <!-- <button class="btn btn-primary" ng-click="addCustom()">Custom Add</button> -->
+        <button class="btn btn-primary" ng-click="deleteAll()">Delete All</button>
+        <!-- <input ng-model="input"> -->
+
+    </div>
+
+    <div class="col-md-12">
+        <h3>Total Amount:</h3>
+        <p>{{totalAmountOfItemsInThisColletection}}</p>
+    </div>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>lat</th>
+                <th>long</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <input class="form-control" ng-model="coord.lat">
+                </td>
+                <td>
+                    <input class="form-control" ng-model="coord.long">
+                </td>
+                <td>
+                    <button class="btn btn-primary" ng-click="add()">
+                        Add
+                    </button>
+                </td>
+                <td>
+                    <button class="btn btn-info" ng-click="update()">
+                        Update
+                    </button>
+                    &nbsp; &nbsp;
+                    <button class="btn btn-info" ng-click="deselect()">
+                        Clear
+                    </button>
+                </td>
+            </tr>
+
+            <tr ng-repeat="coord in gps.data">
+                <td>{{coord.lat}}</td>
+                <td>{{coord.long}}</td>
+                <td>
+                    <button class="btn btn-danger" ng-click="remove(coord._id)">Remove</button>
+                </td>
+                <td>
+                    <button class="btn btn-warning" ng-click="edit(coord._id)">Edit</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
