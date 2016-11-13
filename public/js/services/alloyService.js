@@ -3,109 +3,100 @@
 console.log("OUTSIDE: alloy Service");
 
 //angular.module("main")
-app.service('alloyService', function ($http) {
+app.service('alloyService', function($http) {
 
-    console.log("INSIDE: alloy Service");
+  console.log("INSIDE: alloy Service");
 
+  this.getVotes = function(callback) {
+    console.log("getVoteCountHomeBrew");
 
-    this.getHomeBrew = function (callback) {
-        console.log("success from getHomeBrew");
+    $http({
+      url: '/calexit',
+      method: "GET"
+    }).then(callback);
 
-        $http({
-            url: '/homebrew',
-            method: "GET"
-        })
+  };
 
-        .then(callback);
+  this.postVotes = function(params, callback) {
+    console.log("success from postHomeBrew");
 
-    };
+    $http({
+      url: '/calexit',
+      method: "POST",
+      data: params
+    }).then(callback);
 
-    this.postHomeBrew = function (params, callback) {
-        console.log("success from postHomeBrew");
+  };
 
-        $http({
-            url: '/homebrew',
-            method: "POST",
-            data: params
-        })
+  this.delAllVotes = function(id, callback) {
+    console.log("success from delHomeBrew");
 
-        .then(callback);
+    $http({
+      url: '/del-all/',
+      method: "GET"
+    }).then(callback);
 
-    };
+  };
 
-    this.delHomeBrew = function (id, callback) {
-        console.log("success from delHomeBrew");
+  this.getHomeBrew = function(callback) {
+    console.log("success from getHomeBrew");
 
-        $http({
-            url: '/homebrew/' + id,
-            method: "DELETE"
-        })
+    $http({
+      url: '/homebrew',
+      method: "GET"
+    }).then(callback);
 
-        .then(callback);
+  };
 
-    };
-    this.getSpecificHomeBrew = function (id, callback) {
-        console.log("success from getSpecificHomeBrew");
+  this.delHomeBrew = function(id, callback) {
+    console.log("success from delHomeBrew");
 
-        $http({
-            url: '/homebrew/' + id,
-            method: "GET",
+    $http({
+      url: '/homebrew/' + id,
+      method: "DELETE"
+    }).then(callback);
 
-        })
+  };
+  this.getSpecificHomeBrew = function(id, callback) {
+    console.log("success from getSpecificHomeBrew");
 
-        .then(callback);
+    $http({
+      url: '/homebrew/' + id,
+      method: "GET"
+    }).then(callback);
 
-    };
+  };
 
-    this.updateHomeBrew = function (id, callback) {
-        console.log("success from getSpecificHomeBrew");
+  this.updateHomeBrew = function(id, callback) {
+    console.log("success from getSpecificHomeBrew");
 
-        $http({
-            url: '/homebrew/' + id,
-            method: "GET",
+    $http({
+      url: '/homebrew/' + id,
+      method: "GET"
+    }).then(callback);
 
-        })
+  };
 
-        .then(callback);
+  this.putHomeBrew = function(id, contact, callback) {
+    console.log("success from getSpecificHomeBrew");
 
-    };
+    $http({
+      url: '/homebrew/' + id,
+      method: "PUT",
+      data: contact
+    }).then(callback);
 
-    this.putHomeBrew = function (id, contact, callback) {
-        console.log("success from getSpecificHomeBrew");
+  };
 
-        $http({
-            url: '/homebrew/' + id,
-            method: "PUT",
-            data: contact
-        })
+  this.getVoteCount = function(callback) {
 
-        .then(callback);
+    console.log("success from getVotesCount");
 
-    };
+    $http({
+      url: '/get-count',
+      method: "GET"
+    }).then(callback);
 
-    this.delAllHomeBrew = function (id, callback) {
-        console.log("success from delHomeBrew");
-
-        $http({
-            url: '/del-all/',
-            method: "GET"
-        })
-
-        .then(callback);
-
-    };
-
-    this.getHomeBrewCount = function (callback) {
-
-        console.log("success from getHomeBrewCount");
-
-        $http({
-            url: '/get-count',
-            method: "GET"
-        })
-
-        .then(callback);
-
-    };
+  };
 
 });

@@ -1,0 +1,65 @@
+.jumbo_text {
+    font-size: 100px;
+}
+
+.poll_question_container {
+    border: 1px solid #d4d4d4;
+    color: white;
+    display: block;
+    background-image: url('https://cdn3.vox-cdn.com/uploads/chorus_asset/file/4387649/Golden-Gate-Bridge_-San-Francisco_-CA.-Creative-Commons-by-Thomas-Hawk..0.jpg');
+    background-size: cover;
+}
+
+.card {
+    /*background-image: */
+    /*border-color: rgba(256, 256, 256, .95);*/
+    padding: 50px;
+    border: 1px solid;
+    display: inline-block;
+    flex-direction: column;
+    /*pqpqpqpqpqppq*/
+    /*pqpqpqpqpqppq*/
+    /*pqpqpqpqpqppq*/
+    /*display: block;
+    background-image: url('http://static5.businessinsider.com/image/582368ed46e27a18048b5baa-480/california-students-protest-trump-presidency.jpg');
+    background-size: cover;*/
+    /*pqpqpqpqpqppq*/
+    /*pqpqpqpqpqppq*/
+    /*pqpqpqpqpqppq*/
+    background: rgba(0, 107, 148, .25);
+    background: rgba(255, 255, 255, .180);
+    /*margin: 30px 0px;*/
+    border-radius: 0px;
+}
+
+.card-overlay {
+    background-color: rgba(0, 0, 0, .750);
+    width: 100%;
+    height: 100%;
+}
+
+.background_overlay {
+    background-color: rgba(0, 0, 0, .750);
+    width: 100%;
+    min-height: 100vh;
+}
+
+._blur {
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+}
+
+.thta_missing_padding {
+    padding: 100px 10px;
+}
+
+.ghost-botton {
+    border: 1px solid #fff;
+    padding: 10px 40px;
+    text-align: auto;
+    color: white;
+    background-color: rgba(0, 0, 0, 0);
+}

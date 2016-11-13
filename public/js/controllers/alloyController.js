@@ -2,181 +2,195 @@
 
 console.log("OUTSIDE: alloy Controller");
 
-app.controller('alloyController', function ($scope, $http, alloyService) {
+app.controller('alloyController', function($scope, $http, alloyService) {
 
-    console.log("INSIDE: alloy Controller");
+  console.log("INSIDE: alloy Controller");
 
-    $scope.collectionPlate = function () {
+  $scope.totalNO = 0;
+  $scope.totalYES = 0;
 
-        alloyService.getHomeBrewCount(function (response) {
+  $scope.openNav = () => {
+    document.getElementById("myNav").style.width = "100%";
+  }
 
-            console.log("_________________________________");
-            console.log("getHomebrew response.DATA: ");
-            console.info(response);
-            console.log("_________________________________");
-            $scope.totalAmountOfItemsInThisColletection = response.data;
+  $scope.closeNav = () => {
+    document.getElementById("myNav").style.width = "0%";
+  }
+  $scope.collectionPlate = function() {
 
-        });
+    alloyService.getVoteCount(function(response) {
+      console.log("_________________________________");
+      // console.log("getHomebrew response.DATA: ");
+      // console.info(response);
+      console.log("_________________________________");
+      $scope.totalAmountOfItemsInThisColletection = (response.data + 1);
 
-        $scope.refresh();
-    }
-
-    $scope.refresh = function () {
-
-        alloyService.getHomeBrew(function (response) {
-
-            console.log("_________________________________");
-            console.log("getHomebrew response.DATA: ");
-            console.info(response);
-            console.log("_________________________________");
-            $scope.gps = response;
-
-        });
-
-    }
-
-    $scope.collectionPlate();
+    });
 
     $scope.refresh();
+  }
 
-    $scope.deleteAll = function () {
+  $scope.refresh = function() {
+    alloyService.getVotes(function(response) {
+      console.log("_________________________________");
+      // console.log("getVotes response.DATA: ");
+      // console.info(response.data);
+      console.log("_________________________________");
 
-        alloyService.delAllHomeBrew(function (response) {
+      if (response.data[response.data.length - 1].answer === "yes") {
+        $scope.totalYES++;
+      } else {
+        $scope.totalNO++;
+      }
 
-            console.log("_________________________________");
-            console.log("getHomebrew response.DATA: ");
-            console.info(response);
-            console.log("_________________________________");
-            $scope.gps = response;
+      $scope.votes = response;
+    });
+  }
 
-        });
+  $scope.collectionPlate();
 
-        $scope.refresh();
-    }
+  $scope.refresh();
 
+  $scope.deleteAll = function() {
 
+    alloyService.delAllVotes(function(response) {
 
+      console.log("_________________________________");
+      console.log("getHomebrew response.DATA: ");
+      console.info(response);
+      console.log("_________________________________");
+      $scope.calexit = response;
 
-    $scope.addCustom = function () {
+    });
+    $scope.totalNO = 0;
+    $scope.totalYES = 0;
+    $scope.refresh();
+  }
 
-        console.log($scope.coord)
+  $scope.addCustom = function() {
 
-        alloyService.postHomeBrew($scope.coord, function (response) {
+    console.log($scope.coord)
 
-            console.log("_________________________________");
-            console.log("postHomeBrew SUCCESS");
-            $scope.refresh();
-        })
+    alloyService.postHomeBrew($scope.coord, function(response) {
 
-    }
+      console.log("_________________________________");
+      console.log("postHomeBrew SUCCESS");
+      $scope.refresh();
+    })
 
+  }
 
-    $scope.add = function () {
+  $scope.add = function() {
 
-        console.log($scope.coord)
+    console.log($scope.coord)
 
-        alloyService.postHomeBrew($scope.coord, function (response) {
+    alloyService.postHomeBrew($scope.coord, function(response) {
 
-            console.log("_________________________________");
-            console.log("postHomeBrew SUCCESS");
-            $scope.refresh();
-        })
+      console.log("_________________________________");
+      console.log("postHomeBrew SUCCESS");
+      $scope.refresh();
+    })
 
-    }
+  }
 
+  $scope.remove = function(id) {
 
-    $scope.remove = function (id) {
+    console.log(id);
 
-        console.log(id);
+    alloyService.delHomeBrew(id, function(response) {
 
-        alloyService.delHomeBrew(id, function (response) {
+      console.log("_________________________________");
+      console.log("deleteHomeBrew SUCCESS");
+      $scope.refresh();
+    })
+  }
 
-            console.log("_________________________________");
-            console.log("deleteHomeBrew SUCCESS");
-            $scope.refresh();
-        })
-    }
+  $scope.edit = function(id) {
+    getVoteCount
+    console.log(id)
 
-    $scope.edit = function (id) {
+    alloyService.getSpecificHomeBrew(id, function(response) {
 
-        console.log(id)
+      console.log("_________________________________");
+      console.log("getSpecificHomeBrew SUCCESS");
+      console.log(response);
+      $scope.coord = response.data;
+      $scope.refresh();
 
-        alloyService.getSpecificHomeBrew(id, function (response) {
+    })
+  }
 
-            console.log("_________________________________");
-            console.log("getSpecificHomeBrew SUCCESS");
-            console.log(response);
-            $scope.coord = response.data;
-            $scope.refresh();
+  $scope.update = function() {
 
-        })
-    }
+    console.log($scope.coord._id);
+    console.log($scope.coord);
 
-    $scope.update = function () {
+    alloyService.putHomeBrew($scope.coord._id, $scope.coord, function(response) {
 
-        console.log($scope.coord._id);
-        console.log($scope.coord);
+      console.log("_________________________________");
+      console.log("updateHomeBrew SUCCESS");
+      console.log(response);
+      $scope.refresh();
 
-        alloyService.putHomeBrew($scope.coord._id, $scope.coord, function (response) {
+    })
+  }
 
-            console.log("_________________________________");
-            console.log("updateHomeBrew SUCCESS");
-            console.log(response);
-            $scope.refresh();
+  $scope.deselect = function() {
+    $scope.contact = "";
+  }
 
-        })
-    }
+  /*
 
-    $scope.deselect = function () {
+  THIS IS WHERE I START TO MAKE THE MAGIC HAPPEN!
 
-        $scope.contact = "";
+  */
 
-    }
+  setTimeout(function() {
 
-    /*
+    setInterval(function() {
 
-    THIS IS WHERE I START TO MAKE THE MAGIC HAPPEN!
+      $scope.high = 180;
+      $scope.lo = -150;
+      $scope.randomNum = Math.floor((Math.random() * $scope.high) + $scope.lo);
 
-    */
+      $scope.userVOTE = {
+        answer: $scope.randomNum > -80
+          ? "yes"
+          : "no"
+      }
 
-    setTimeout(function () {
-
-        setInterval(function () {
-
-            $scope.high = 180;
-            $scope.lo = -150;
-            $scope.randomLat = Math.floor((Math.random() * $scope.high) + $scope.lo);
-            $scope.randomLong = Math.floor((Math.random() * $scope.high) + $scope.lo);
-
-            $scope.customCoordinates = {
-                lat: $scope.randomLat,
-                long: $scope.randomLong
-            }
-
-            // console.info('Lat: ' + $scope.randomLat + ' Long: ' + $scope.randomLong);
-
-            $scope.collectionPlate();
-            if ($scope.totalAmountOfItemsInThisColletection <= 100) {
-                $scope.customAdd();
-            } else {
-                $scope.deleteAll();
-            }
-
-        }, 1000);
+      $scope.collectionPlate();
+      if ($scope.totalAmountOfItemsInThisColletection <= 10000) {
+        $scope.customAdd();
+      } else {
+        $scope.deleteAll();
+      }
 
     }, 1000);
 
-    $scope.customAdd = function () {
+  }, 1000);
 
-        console.log($scope.coord)
+  $scope.customAdd = function() {
 
-        alloyService.postHomeBrew($scope.customCoordinates, function (response) {
+    console.log($scope.coord)
 
-            console.log("_________________________________");
-            console.log("postHomeBrew SUCCESS");
-            $scope.refresh();
-        })
+    alloyService.postVotes($scope.userVOTE, function(response) {
+      console.log("_________________________________");
+      console.log("postHomeBrew SUCCESS");
+      $scope.refresh();
+    })
 
+  }
+
+  $scope.addVote = function(x) {
+    $scope.userVOTE = {
+      answer: x
     }
+    alloyService.postVotes($scope.userVOTE, function(response) {
+      console.log("_________________________________");
+      console.log("postVOTE SUCCESS");
+      $scope.refresh();
+    })
+  }
 
 });

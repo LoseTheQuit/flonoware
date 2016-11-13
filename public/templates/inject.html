@@ -1,14 +1,130 @@
-<link rel="stylesheet" href="../css/inject.css">
-
-<div class="bodyOverlay">
-
+<!-- bodyOverlay -->
+<div class="">
+    <!-- bodyOverlay -->
     <div class="container">
 
-      <div class="col-md-12">
-          <h1>Calexit</h1>
-      </div>
+        <div class="navWrapper">
+            <span style="font-size:30px;cursor:pointer" ng-click="openNav()">&#9776;</span>
+        </div>
 
-      
+        <div class="col-md-12">
+          <h1 class="jumbo_text">#calexit</h1>
+
+          <!--
+          <button class="btn btn-primary" ng-click="deleteAll()">
+            Del
+          </button>
+          -->
+
+        </div>
+
+        <div class="navWrapper">
+            <div id="myNav" class="overlay">
+                <a href="javascript:void(0)" class="closebtn" ng-click="closeNav()">&times;</a>
+                <div class="overlay-content">
+                    <a href="#">About</a>
+                    <a href="#">Services</a>
+                    <a href="#">Clients</a>
+                    <a href="#">Contact</a>
+                </div>
+            </div>
+        </div>
+
+        <a href="#vote" id="vote"></a>
+
+        <div class="col-md-12">
+            <div class="card">
+
+                <div class="col-md-8">
+                    <p class="poll-question">Would you allow Califonia to secede from the union?</p>
+                </div>
+
+                <div class="col-md-4">
+                    <div class="col-md-12 col-xs-6">
+                        <button class="ghost-botton" ng-click="addVote('yes')">
+                            YES
+                        </button>
+                    </div>
+                    <div class="col-md-12 col-xs-6">
+                        <button class="ghost-botton" ng-click="addVote('no')">
+                            NO
+                        </button>
+                    </div>
+                    <!-- </div> -->
+
+                </div>
+            </div>
+        </div>
+
+        <!-- <div class="col-md-12">
+            <div class="poll_question_container">
+            </div>
+        </div> -->
+
+        <a href="#stats"></a>
+        <div class="stats_container">
+
+            <div class="col-md-12">
+                <h1 class="robotoh1">Total Votes:
+                    {{totalAmountOfItemsInThisColletection}}</h1>
+                <p>NO
+                    {{totalNO}}</p>
+                <p>YES
+                    {{totalYES}}</p>
+            </div>
+        </div>
+
+        <!--
+        <div class="col-md-2" ng-repeat="vote in votes.data">
+            <p>{{vote.answer}}</p>
+        </div>
+        -->
+
+        <!-- <table class="table">
+            <thead>
+                <tr>
+                    <th>lat</th>
+                    <th>long</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody class="cardStyle">
+                <tr>
+                    <td>
+                        <input class="form-control" ng-model="coord.lat">
+                    </td>
+                    <td>
+                        <input class="form-control" ng-model="coord.long">
+                    </td>
+                    <td>
+                        <button class="btn btn-primary" ng-click="add()">
+                            Add
+                        </button>
+                    </td>
+                    <td>
+                        <button class="btn btn-info" ng-click="update()">
+                            Update
+                        </button>
+                        &nbsp; &nbsp;
+                        <button class="btn btn-info" ng-click="deselect()">
+                            Clear
+                        </button>
+                    </td>
+                </tr>
+
+                 <tr ng-repeat="coord in gps.data">
+                    <td>{{coord.lat}}</td>
+                    <td>{{coord.long}}</td>
+                    <td>
+                        <button class="btn btn-danger" ng-click="remove(coord._id)">Remove</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-warning" ng-click="edit(coord._id)">Edit</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table> -->
+
         <!-- <div class="col-xl-2  col-lg-12 col-md-12" class="navbar navbar-inverse">
             <div data-spy="affix">
 
