@@ -104,15 +104,16 @@ app.controller('alloyController', function($scope, $http, alloyService) {
       }
 
       $scope.collectionPlate();
-      if ($scope.totalAmountOfItemsInThisColletection <= 999999999) {
-        $scope.customAdd($scope.userVOTE);
-      } else {
-        $scope.deleteAll();
-      }
+      $scope.customAdd($scope.userVOTE);
+      // if ($scope.totalAmountOfItemsInThisColletection <= 999999999) {
+      //   $scope.customAdd($scope.userVOTE);
+      // } else {
+      //   $scope.deleteAll();
+      // }
 
-    }, 5000);
+    }, 30000);
 
-  }, 100);
+  }, 30000);
 
   $scope.customAdd = function(userVote) {
 
