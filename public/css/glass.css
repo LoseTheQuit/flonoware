@@ -40,26 +40,33 @@
 
 .background_overlay {
     background-color: rgba(0, 0, 0, .750);
+    width: 100vw;
     width: 100%;
     min-height: 100vh;
-}
-
-._blur {
-    -webkit-filter: blur(5px);
-    -moz-filter: blur(5px);
-    -o-filter: blur(5px);
-    -ms-filter: blur(5px);
-    filter: blur(5px);
-}
-
-.thta_missing_padding {
-    padding: 100px 10px;
 }
 
 .ghost-botton {
     border: 1px solid #fff;
     padding: 10px 40px;
-    text-align: auto;
     color: white;
+    margin: 20px 20px;
     background-color: rgba(0, 0, 0, 0);
+}
+
+.poll-response {
+    display: flex;
+    /*flex-direction: column;*/
+    flex-wrap: wrap;
+}
+
+.poll-question {
+    text-align: left;
+    font-size: 34px;
+}
+
+@media only screen and (max-width: 480px) {
+    .poll-question {
+        text-align: left;
+        font-size: 28px;
+    }
 }

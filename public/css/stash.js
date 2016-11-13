@@ -93,6 +93,19 @@ export default StyleSheet.create({
         "borderStyle": "solid",
         "borderColor": "rgba(256, 256, 256, .25)"
     },
+    "_blur": {
+        "WebkitFilter": "blur(5px)",
+        "MozFilter": "blur(5px)",
+        "OFilter": "blur(5px)",
+        "MsFilter": "blur(5px)",
+        "filter": "blur(5px)"
+    },
+    "thta_missing_padding": {
+        "paddingTop": 100,
+        "paddingRight": 10,
+        "paddingBottom": 100,
+        "paddingLeft": 10
+    },
     "theDividingLine": {
         "display": "block",
         "height": 3,

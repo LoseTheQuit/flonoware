@@ -37,27 +37,25 @@ export default StyleSheet.create({
         "width": "100%",
         "minHeight": 100 * vh
     },
-    "_blur": {
-        "WebkitFilter": "blur(5px)",
-        "MozFilter": "blur(5px)",
-        "OFilter": "blur(5px)",
-        "MsFilter": "blur(5px)",
-        "filter": "blur(5px)"
-    },
-    "thta_missing_padding": {
-        "paddingTop": 100,
-        "paddingRight": 10,
-        "paddingBottom": 100,
-        "paddingLeft": 10
-    },
     "ghost-botton": {
         "border": "1px solid #fff",
         "paddingTop": 10,
         "paddingRight": 40,
         "paddingBottom": 10,
         "paddingLeft": 40,
-        "textAlign": "auto",
         "color": "white",
+        "marginTop": 20,
+        "marginRight": 20,
+        "marginBottom": 20,
+        "marginLeft": 20,
         "backgroundColor": "rgba(0, 0, 0, 0)"
+    },
+    "poll-response": {
+        "display": "flex",
+        "flexWrap": "wrap"
+    },
+    "poll-question": {
+        "textAlign": "left",
+        "fontSize": 34
     }
 });

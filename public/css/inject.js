@@ -35,9 +35,5 @@ export default StyleSheet.create({
         "paddingRight": 0,
         "paddingBottom": 100,
         "paddingLeft": 0
-    },
-    "poll-question": {
-        "textAlign": "left",
-        "fontSize": 34
     }
 });

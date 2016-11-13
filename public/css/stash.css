@@ -147,6 +147,18 @@ h2 {
     border-color: rgba(256, 256, 256, .25);
 }
 
+._blur {
+    -webkit-filter: blur(5px);
+    -moz-filter: blur(5px);
+    -o-filter: blur(5px);
+    -ms-filter: blur(5px);
+    filter: blur(5px);
+}
+
+.thta_missing_padding {
+    padding: 100px 10px;
+}
+
 @media (min-width: 1200px) {
     .container {
         max-width: 1200px;
