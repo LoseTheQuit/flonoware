@@ -24,3 +24,15 @@
 .navWrapper {
     padding: 20px 0px 100px;
 }
+
+.hamburger-menu {
+    font-size: 30px;
+    cursor: pointer;
+    color: #fff;
+    background-color: #fff;
+}
+
+
+/*:before {
+    content: '\2630';
+}*/
