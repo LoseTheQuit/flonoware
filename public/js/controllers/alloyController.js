@@ -93,27 +93,29 @@ app.controller('alloyController', function($scope, $http, alloyService) {
 
     setInterval(function() {
 
-      $scope.high = 12;
-      $scope.lo = 0;
-      $scope.randomNum = Math.floor((Math.random() * $scope.high) + $scope.lo);
+      // $scope.high = 12;
+      // $scope.lo = 0;
+      // $scope.randomNum = Math.floor((Math.random() * $scope.high) + $scope.lo);
+      //
+      // $scope.userVOTE = {
+      //   answer: $scope.randomNum > 2
+      //     ? "yes"
+      //     : "no"
+      // }
 
-      $scope.userVOTE = {
-        answer: $scope.randomNum > 2
-          ? "yes"
-          : "no"
-      }
-
-      $scope.collectionPlate();
-      $scope.customAdd($scope.userVOTE);
+      // $scope.collectionPlate();
+      // $scope.customAdd($scope.userVOTE);
       // if ($scope.totalAmountOfItemsInThisColletection <= 999999999) {
       //   $scope.customAdd($scope.userVOTE);
       // } else {
       //   $scope.deleteAll();
       // }
 
-    }, 30000);
+      $scope.collectionPlate();
 
-  }, 30000);
+    }, 1000);
+
+  }, 5000);
 
   $scope.customAdd = function(userVote) {
 
