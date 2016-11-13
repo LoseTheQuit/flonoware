@@ -8,8 +8,6 @@ app.service('alloyService', function($http) {
   console.log("INSIDE: alloy Service");
 
   this.getVotes = function(callback) {
-    console.log("getVotes");
-
     $http({
       url: '/calexit',
       method: "GET"
@@ -18,8 +16,6 @@ app.service('alloyService', function($http) {
   };
 
   this.postVotes = function(params, callback) {
-    console.log("SERVICE - success from postVotes");
-
     $http({
       url: '/calexit',
       method: "POST",
@@ -69,7 +65,6 @@ app.service('alloyService', function($http) {
 
   this.updateHomeBrew = function(id, callback) {
     console.log("success from getSpecificHomeBrew");
-
     $http({
       url: '/homebrew/' + id,
       method: "GET"
@@ -89,9 +84,6 @@ app.service('alloyService', function($http) {
   };
 
   this.getVoteCount = function(callback) {
-
-    console.log("success from getVotesCount");
-
     $http({
       url: '/get-count',
       method: "GET"
@@ -100,9 +92,6 @@ app.service('alloyService', function($http) {
   };
 
   this.getVoteSplitCount = function(callback) {
-
-    console.log("SERVICE - success from getVotesCount");
-
     $http({
       url: '/query',
       method: "POST"
