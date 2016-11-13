@@ -7,11 +7,11 @@ app.controller('alloyController', function($scope, $http, alloyService) {
   $scope.totalNO = 0;
   $scope.totalYES = 0;
 
-  $scope.openNav = () => {
+  $scope.openNav = function() {
     document.getElementById("myNav").style.width = "100%";
   }
 
-  $scope.closeNav = () => {
+  $scope.closeNav = function() {
     document.getElementById("myNav").style.width = "0%";
   }
 
