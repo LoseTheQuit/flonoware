@@ -39,7 +39,6 @@ export default StyleSheet.create({
     "hamburger-menu": {
         "fontSize": 30,
         "cursor": "pointer",
-        "color": "#fff",
-        "backgroundColor": "#fff"
+        "color": "#fff"
     }
 });

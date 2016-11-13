@@ -1,9 +1,7 @@
 'use strict';
 
 console.log("OUTSIDE: alloy Controller");
-
 app.controller('alloyController', function($scope, $http, alloyService) {
-
   console.log("INSIDE: alloy Controller");
 
   $scope.totalNO = 0;
