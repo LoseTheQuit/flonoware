@@ -8,7 +8,7 @@ app.service('alloyService', function($http) {
   console.log("INSIDE: alloy Service");
 
   this.getVotes = function(callback) {
-    console.log("getVoteCountHomeBrew");
+    console.log("getVotes");
 
     $http({
       url: '/calexit',

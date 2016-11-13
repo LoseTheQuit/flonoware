@@ -37,8 +37,13 @@ export default StyleSheet.create({
         "paddingLeft": 0
     },
     "hamburger-menu": {
-        "fontSize": 30,
+        "fontSize": 25,
         "cursor": "pointer",
-        "color": "#fff"
+        "color": "#ffffff",
+        "border": "1px solid #fff",
+        "paddingTop": 3,
+        "paddingRight": 3,
+        "paddingBottom": 3,
+        "paddingLeft": 3
     }
 });

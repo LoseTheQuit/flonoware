@@ -26,9 +26,11 @@
 }
 
 .hamburger-menu {
-    font-size: 30px;
+    font-size: 25px;
     cursor: pointer;
-    color: #fff;
+    color: #ffffff;
+    border: 1px solid #fff;
+    padding: 3px;
     /*background-color: #fff;*/
 }
 

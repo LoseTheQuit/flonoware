@@ -15,7 +15,6 @@ app.controller('alloyController', function($scope, $http, alloyService) {
     document.getElementById("myNav").style.width = "0%";
   }
   $scope.collectionPlate = function() {
-
     alloyService.getVoteCount(function(response) {
       console.log("_________________________________");
       // console.log("getHomebrew response.DATA: ");
