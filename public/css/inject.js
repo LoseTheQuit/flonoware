@@ -39,15 +39,28 @@ export default StyleSheet.create({
     "hamburger-menu": {
         "fontSize": 25,
         "cursor": "pointer",
-        "color": "#ffffff",
+        "color": "#000",
         "border": "1px solid #fff",
         "paddingTop": 3,
         "paddingRight": 3,
         "paddingBottom": 3,
-        "paddingLeft": 3
+        "paddingLeft": 3,
+        "backgroundColor": "#fff"
     },
-    "hamburger-menu:before": {
-        "content": "'\\2630'",
-        "color": "#ffffff"
+    "navbar-toggle": {
+        "background": "none",
+        "WebkitBorderRadius": 0,
+        "MozBorderRadius": 0,
+        "borderRadius": 0,
+        "marginTop": 28,
+        "marginRight": 6,
+        "marginBottom": 10,
+        "marginLeft": 6,
+        "paddingTop": 12,
+        "paddingRight": 14,
+        "paddingBottom": 12,
+        "paddingLeft": 14,
+        "border": "2px solid black",
+        "color": "#000"
     }
 });

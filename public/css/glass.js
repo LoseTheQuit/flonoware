@@ -57,5 +57,11 @@ export default StyleSheet.create({
     "poll-question": {
         "textAlign": "left",
         "fontSize": 34
+    },
+    "stats_container": {
+        "marginTop": 0,
+        "marginRight": 0,
+        "marginBottom": 250,
+        "marginLeft": 0
     }
 });

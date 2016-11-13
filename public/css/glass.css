@@ -64,6 +64,10 @@
     font-size: 34px;
 }
 
+.stats_container {
+    margin: 0px 0px 250px;
+}
+
 @media only screen and (max-width: 480px) {
     .poll-question {
         text-align: left;

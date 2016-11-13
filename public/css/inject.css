@@ -28,13 +28,28 @@
 .hamburger-menu {
     font-size: 25px;
     cursor: pointer;
-    color: #ffffff;
+    color: #000;
     border: 1px solid #fff;
     padding: 3px;
-    /*background-color: #fff;*/
+    background-color: #fff;
 }
 
-.hamburger-menu:before {
-    content: '\2630';
-    color: #ffffff;
+
+/*090909090909*/
+
+
+/*090909090909*/
+
+
+/*090909090909*/
+
+.navbar-toggle {
+    background: none;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    border-radius: 0;
+    margin: 28px 6px 10px;
+    padding: 12px 14px;
+    border: 2px solid black;
+    color: #000;
 }
