@@ -5,6 +5,7 @@ $(function() {
       $('.del').removeClass('hide');
     }
   });
+
   $(document).keypress("I", function(e) {
     if (e.ctrlKey && e.keyCode == 49) {
       $.get("http://ipinfo.io", function(response) {
@@ -12,6 +13,10 @@ $(function() {
       }, "jsonp");
     }
   });
+
+  // --
+  // --
+  // --
 
   // $(document).keypress("Y", function(e) {
   //   if (e.ctrlKey && e.keyCode == 57) {
