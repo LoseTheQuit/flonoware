@@ -98,11 +98,11 @@ app.controller('alloyController', function($scope, $http, alloyService) {
       // $scope.randomNum = Math.floor((Math.random() * $scope.high) + $scope.lo);
       //
       // $scope.userVOTE = {
-      //   answer: $scope.randomNum > 2
+      //   answer: $scope.randomNum > 5
       //     ? "yes"
       //     : "no"
       // }
-
+      //
       // $scope.collectionPlate();
       // $scope.customAdd($scope.userVOTE);
       // if ($scope.totalAmountOfItemsInThisColletection <= 999999999) {
@@ -113,9 +113,9 @@ app.controller('alloyController', function($scope, $http, alloyService) {
 
       $scope.collectionPlate();
 
-    }, 1000);
+    }, 100);
 
-  }, 5000);
+  }, 1000);
 
   $scope.customAdd = function(userVote) {
 
