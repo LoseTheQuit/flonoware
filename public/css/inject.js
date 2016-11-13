@@ -45,5 +45,9 @@ export default StyleSheet.create({
         "paddingRight": 3,
         "paddingBottom": 3,
         "paddingLeft": 3
+    },
+    "hamburger-menu:before": {
+        "content": "'\\2630'",
+        "color": "#ffffff"
     }
 });

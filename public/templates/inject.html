@@ -4,7 +4,7 @@
     <div class="container">
 
         <div class="navWrapper">
-            <span  class="hamburger-menu"  ng-click="openNav()">&#9776;</span>
+            <span class="hamburger-menu" ng-click="openNav()">&#9776;</span>
         </div>
 
         <div class="col-md-12">
@@ -22,10 +22,14 @@
             <div id="myNav" class="overlay">
                 <a href="javascript:void(0)" class="closebtn" ng-click="closeNav()">&times;</a>
                 <div class="overlay-content">
-                    <a href="#">About</a>
-                    <a href="#">Services</a>
-                    <a href="#">Clients</a>
-                    <a href="#">Contact</a>
+                    <p>
+                        Developed by
+                        <a href="http://www.losethequit.me">Losethequit</a>
+                    </p>
+                    
+                   <!-- <a href="#">Services</a> -->
+                    <!-- <a href="#">Clients</a> -->
+                    <a href="http://www.losethequit.me/views/contact.html">Contact</a>
                 </div>
             </div>
         </div>
@@ -42,15 +46,15 @@
                 <div class="col-md-4 poll-response">
                     <div class="col-md-12  col-sm-6 col-xs-12 text-center">
 
-                            <button class="ghost-botton" ng-click="addVote('yes')">
-                                YES
-                            </button>
+                        <button class="ghost-botton" ng-click="addVote('yes')">
+                            YES
+                        </button>
 
                     </div>
                     <div class="col-md-12 col-sm-6 col-xs-12 text-center">
-                             <button class="ghost-botton" ng-click="addVote('no')">
-                                NO
-                            </button>
+                        <button class="ghost-botton" ng-click="addVote('no')">
+                            NO
+                        </button>
                     </div>
                     <!-- </div> -->
 
