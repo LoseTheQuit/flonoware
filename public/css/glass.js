@@ -71,5 +71,9 @@ export default StyleSheet.create({
     },
     "hide": {
         "display": "none"
+    },
+    "the_other_hide": {
+        "width": 0,
+        "height": 0
     }
 });
