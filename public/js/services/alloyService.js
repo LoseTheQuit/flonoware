@@ -18,7 +18,7 @@ app.service('alloyService', function($http) {
   };
 
   this.postVotes = function(params, callback) {
-    console.log("success from postHomeBrew");
+    console.log("SERVICE - success from postVotes");
 
     $http({
       url: '/calexit',
@@ -95,6 +95,17 @@ app.service('alloyService', function($http) {
     $http({
       url: '/get-count',
       method: "GET"
+    }).then(callback);
+
+  };
+
+  this.getVoteSplitCount = function(callback) {
+
+    console.log("SERVICE - success from getVotesCount");
+
+    $http({
+      url: '/query',
+      method: "POST"
     }).then(callback);
 
   };

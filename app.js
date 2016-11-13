@@ -149,72 +149,19 @@ app.get('/homebrew', function(req, res) {
   })
 
 });
+app.post('/query', function(req, res) {
 
-// app.delete('/homebrew/:id', function(req, res) {
-//
-//   let id = req.params.id;
-//   console.log('\n');
-//   console.log('******* INCOMING DELETE REQUEST - Load Template *******'.black.bgWhite);
-//   console.log('\n');
-//   console.log(id);
-//   console.log('\n');
-//
-//   db.gps.remove({
-//     _id: mongojs.ObjectId(id)
-//   }, function(err, docs) {
-//     console.log(docs)
-//     res.json(docs)
-//   })
-//
-// });
+  console.log('\n');
+  console.log('* CALEXIT - "FINDING THE YES\'S" POST REQUEST *'.black.bgWhite);
+  console.log('\n');
 
-// app.get('/homebrew/:id', function(req, res) {
-//   let id = req.params.id;
-//   console.log('\n');
-//   console.log('******* INCOMING CUSTOM GET REQUEST - Load Template *******'.black.bgWhite);
-//   console.log('\n');
-//   console.log(id);
-//   console.log('\n');
-//
-//   db.gps.findOne({
-//     _id: mongojs.ObjectId(id)
-//   }, function(err, docs) {
-//     console.log(docs)
-//     res.json(docs);
-//   });
-//
-// });
+  db.calexit.find({
+    answer: 'yes'
+  }, function(err, docs) {
 
-//
-// app.put('/homebrew/:id', function(req, res) {
-//
-//   let id = req.params.id;
-//   console.log('\n');
-//   console.log('******* INCOMING CUSTOM PUT REQUEST - Load Template *******'.black.bgWhite);
-//   console.log('\n');
-//   // console.log(id);
-//   console.log('\n');
-//   console.log(req.body.name);
-//   console.log('\n');
-//
-//   var asd = {
-//     _id: mongojs.ObjectId(id)
-//   };
-//
-//   db.gps.findAndModify({
-//     query: {
-//       _id: mongojs.ObjectId(id)
-//     },
-//     update: {
-//       $set: {
-//         lat: req.body.lat,
-//         long: req.body.long
-//       }
-//     },
-//     new: true
-//   }, function(err, docs) {
-//     console.log(docs)
-//     res.json(docs);
-//   });
-//
-// });
+    //console.log(Object.keys(docs));
+    //console.log(docs)
+
+    res.json(docs)
+  });
+});

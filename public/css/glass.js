@@ -7,7 +7,11 @@ const {width, height, scale} = Dimensions.get("window"),
 
 export default StyleSheet.create({
     "jumbo_text": {
-        "fontSize": 100
+        "fontSize": 182,
+        "marginTop": 0,
+        "marginRight": 0,
+        "marginBottom": 100,
+        "marginLeft": 0
     },
     "poll_question_container": {
         "border": "1px solid #d4d4d4",
@@ -24,7 +28,7 @@ export default StyleSheet.create({
         "border": "1px solid",
         "display": "inline-block",
         "flexDirection": "column",
-        "background": "rgba(255, 255, 255, .180)",
+        "background": "rgba(0, 107, 148, .25)",
         "borderRadius": 0
     },
     "card-overlay": {
@@ -59,9 +63,13 @@ export default StyleSheet.create({
         "fontSize": 34
     },
     "stats_container": {
-        "marginTop": 0,
+        "display": "inline-block",
+        "marginTop": 50,
         "marginRight": 0,
         "marginBottom": 250,
         "marginLeft": 0
+    },
+    "hide": {
+        "display": "none"
     }
 });

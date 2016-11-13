@@ -1,5 +1,6 @@
 .jumbo_text {
-    font-size: 100px;
+    font-size: 182px;
+    margin: 0px 0px 100px;
 }
 
 .poll_question_container {
@@ -14,6 +15,7 @@
     /*background-image: */
     /*border-color: rgba(256, 256, 256, .95);*/
     padding: 50px;
+    /*padding: 25px;*/
     border: 1px solid;
     display: inline-block;
     flex-direction: column;
@@ -27,7 +29,7 @@
     /*pqpqpqpqpqppq*/
     /*pqpqpqpqpqppq*/
     background: rgba(0, 107, 148, .25);
-    background: rgba(255, 255, 255, .180);
+    /*background: rgba(255, 255, 255, .180);*/
     /*margin: 30px 0px;*/
     border-radius: 0px;
 }
@@ -65,12 +67,21 @@
 }
 
 .stats_container {
-    margin: 0px 0px 250px;
+    display: inline-block;
+    margin: 50px 0px 250px;
+}
+
+.hide {
+    display: none;
 }
 
 @media only screen and (max-width: 480px) {
+    .jumbo_text {
+        font-size: 82px;
+        margin: 0px 0px 50px;
+    }
     .poll-question {
         text-align: left;
-        font-size: 28px;
+        font-size: 27px;
     }
 }

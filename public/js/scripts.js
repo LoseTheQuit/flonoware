@@ -1,8 +1,17 @@
 $(function() {
 
-  // $('#nav-icon1,#nav-icon2,#nav-icon3,#nav-icon4').click(function() {
-  //   $(this).toggleClass('open');
+  $(document).keypress("I", function(e) {
+    if (e.ctrlKey && e.keyCode == 48) {
+      $('.del').removeClass('hide');
+    }
+  });
+
+  // $(document).keypress("Y", function(e) {
+  //   if (e.ctrlKey && e.keyCode == 57) {
+  //     $('.del').removeClass('hide');
+  //   }
   // });
+
   $('a[href*="#"]:not([href="#"])').click(function() {
 
     if (location.pathname.replace(/^\//, '') === this.pathname.replace(/^\//, '') && location.hostname === this.hostname) {

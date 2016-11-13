@@ -7,21 +7,12 @@
             <span class="hamburger-menu" ng-click="openNav()">&#9776;</span>
         </div>
 
-        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-
         <div class="col-md-12">
             <h1 class="jumbo_text">#calexit</h1>
 
-            <!--
-          <button class="btn btn-primary" ng-click="deleteAll()">
-            Del
-          </button>
-          -->
+            <button class="btn btn-primary del hide" ng-click="deleteAll()">
+                Del
+            </button>
 
         </div>
 
@@ -74,16 +65,20 @@
             </div>
         </div> -->
 
-        <a href="#stats"></a>
         <div class="stats_container">
 
             <div class="col-md-12">
-                <h1 class="robotoh1">Total Votes:
-                    {{totalAmountOfItemsInThisColletection}}</h1>
-                <p>NO
-                    {{totalNO}}</p>
-                <p>YES
-                    {{totalYES}}</p>
+                <div class="col-xs-12">
+                    <h1 class="robotoh1">Total Votes:
+                        {{totalAmountOfItemsInThisColletection}}</h1>
+                </div>
+                <div class="col-xs-12">
+                  <p>for:
+                      {{totalYES}}</p>
+                    <p>against:
+                        {{totalNO}}</p>
+
+                </div>
             </div>
         </div>
 

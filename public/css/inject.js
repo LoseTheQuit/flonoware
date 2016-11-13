@@ -62,5 +62,15 @@ export default StyleSheet.create({
         "paddingLeft": 14,
         "border": "2px solid black",
         "color": "#000"
+    },
+    "btn-navbar:hover": {
+        "backgroundColor": "transparent",
+        "backgroundImage": "none",
+        "borderRadius": 0,
+        "border": "0 !important",
+        "WebkitBoxShadow": "none",
+        "MozBoxShadow": "none",
+        "boxShadow": "none",
+        "paddingTop": 23
     }
 });

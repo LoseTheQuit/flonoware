@@ -14,6 +14,7 @@ app.controller('alloyController', function($scope, $http, alloyService) {
   $scope.closeNav = () => {
     document.getElementById("myNav").style.width = "0%";
   }
+
   $scope.collectionPlate = function() {
     alloyService.getVoteCount(function(response) {
       console.log("_________________________________");
@@ -24,24 +25,42 @@ app.controller('alloyController', function($scope, $http, alloyService) {
 
     });
 
+    $scope.getVoteSplit();
     $scope.refresh();
   }
 
+  $scope.getVoteSplit = function() {
+    alloyService.getVoteSplitCount(function(response) {
+      // console.log("getHomebrew response.DATA: ");
+      console.log("____________ SPLIT DATA ____________");
+      console.info(response.data.length);
+      console.log("____________ SPLIT DATA ____________");
+      $scope.totalYES = response.data.length;
+      $scope.totalNO = $scope.totalAmountOfItemsInThisColletection - response.data.length;
+
+      console.log("TOTAL: " + ($scope.totalYES + $scope.totalNO));
+    });
+
+  }
+
   $scope.refresh = function() {
+
     alloyService.getVotes(function(response) {
-      console.log("_________________________________");
       // console.log("getVotes response.DATA: ");
       // console.info(response.data);
+      console.log("getVotes");
       console.log("_________________________________");
 
-      if (response.data[response.data.length - 1].answer === "yes") {
-        $scope.totalYES++;
-      } else {
-        $scope.totalNO++;
-      }
+      // if (response.data[response.data.length - 1].answer !== undefined)
+      //   if (response.data[response.data.length - 1].answer === "yes") {
+      //     $scope.totalYES++;
+      //   } else {
+      //     $scope.totalNO++;
+      // }
 
       $scope.votes = response;
     });
+
   }
 
   $scope.collectionPlate();
@@ -64,78 +83,6 @@ app.controller('alloyController', function($scope, $http, alloyService) {
     $scope.refresh();
   }
 
-  $scope.addCustom = function() {
-
-    console.log($scope.coord)
-
-    alloyService.postHomeBrew($scope.coord, function(response) {
-
-      console.log("_________________________________");
-      console.log("postHomeBrew SUCCESS");
-      $scope.refresh();
-    })
-
-  }
-
-  $scope.add = function() {
-
-    console.log($scope.coord)
-
-    alloyService.postHomeBrew($scope.coord, function(response) {
-
-      console.log("_________________________________");
-      console.log("postHomeBrew SUCCESS");
-      $scope.refresh();
-    })
-
-  }
-
-  $scope.remove = function(id) {
-
-    console.log(id);
-
-    alloyService.delHomeBrew(id, function(response) {
-
-      console.log("_________________________________");
-      console.log("deleteHomeBrew SUCCESS");
-      $scope.refresh();
-    })
-  }
-
-  $scope.edit = function(id) {
-    getVoteCount
-    console.log(id)
-
-    alloyService.getSpecificHomeBrew(id, function(response) {
-
-      console.log("_________________________________");
-      console.log("getSpecificHomeBrew SUCCESS");
-      console.log(response);
-      $scope.coord = response.data;
-      $scope.refresh();
-
-    })
-  }
-
-  $scope.update = function() {
-
-    console.log($scope.coord._id);
-    console.log($scope.coord);
-
-    alloyService.putHomeBrew($scope.coord._id, $scope.coord, function(response) {
-
-      console.log("_________________________________");
-      console.log("updateHomeBrew SUCCESS");
-      console.log(response);
-      $scope.refresh();
-
-    })
-  }
-
-  $scope.deselect = function() {
-    $scope.contact = "";
-  }
-
   /*
 
   THIS IS WHERE I START TO MAKE THE MAGIC HAPPEN!
@@ -146,34 +93,32 @@ app.controller('alloyController', function($scope, $http, alloyService) {
 
     setInterval(function() {
 
-      $scope.high = 180;
-      $scope.lo = -150;
+      $scope.high = 12;
+      $scope.lo = 0;
       $scope.randomNum = Math.floor((Math.random() * $scope.high) + $scope.lo);
 
       $scope.userVOTE = {
-        answer: $scope.randomNum > -80
+        answer: $scope.randomNum > 2
           ? "yes"
           : "no"
       }
 
       $scope.collectionPlate();
-      if ($scope.totalAmountOfItemsInThisColletection <= 10000) {
-        $scope.customAdd();
+      if ($scope.totalAmountOfItemsInThisColletection <= 999999999) {
+        $scope.customAdd($scope.userVOTE);
       } else {
         $scope.deleteAll();
       }
 
-    }, 1000);
+    }, 5000);
 
-  }, 1000);
+  }, 100);
 
-  $scope.customAdd = function() {
+  $scope.customAdd = function(userVote) {
 
-    console.log($scope.coord)
-
-    alloyService.postVotes($scope.userVOTE, function(response) {
+    alloyService.postVotes(userVote, function(response) {
+      console.log("customAdd postVotes - SUCCESS");
       console.log("_________________________________");
-      console.log("postHomeBrew SUCCESS");
       $scope.refresh();
     })
 
@@ -186,8 +131,9 @@ app.controller('alloyController', function($scope, $http, alloyService) {
     alloyService.postVotes($scope.userVOTE, function(response) {
       console.log("_________________________________");
       console.log("postVOTE SUCCESS");
-      $scope.refresh();
+      $scope.collectionPlate();
     })
+
   }
 
 });
