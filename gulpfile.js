@@ -2,16 +2,17 @@
 
 var gulp = require('gulp');
 var clean = require('gulp-clean');
-var babel = require('gulp-babel');
 var rename = require('gulp-rename');
 var gutil = require('gulp-util');
 var sass = require('gulp-sass');
-var minify = require('gulp-minify');
-var jshint = require('gulp-jshint');
+var cssmin = require('gulp-cssmin');
 var concat = require('gulp-concat');
+var minify = require('gulp-minify');
 var uglify = require('gulp-uglify');
+var maps = require('gulp-sourcemaps');
 var imagemin = require('gulp-imagemin');
-
+var jshint = require('gulp-jshint');
+var babel = require('gulp-babel');
 
 gulp.task('clean', function() {
     return gulp.src('public/dist', {read: false}).pipe(clean());
@@ -28,6 +29,7 @@ gulp.task('watch', function() {
     console.log('GULP WATCH');
     gulp.watch('public/**/*', ['default']);
 });
+
 
 gulp.task('concatAngular', function() {
     gulp.src([
@@ -50,12 +52,26 @@ gulp.task('uglifyAngular', ['concatAngular'], function() {
     .pipe(gulp.dest('public/dist/js/ng/dist'));
 });
 
+// gulp.task('compileSass', function() {
+//     gulp.src('public/scss/index.scss')
+//     .pipe(sass())
+//     .pipe(gulp.dest('public/dist/sass'));
+// });
+
 gulp.task('compileSass', function() {
-    gulp.src('public/scss/index.scss')
-    .pipe(sass())
-    .pipe(gulp.dest('public/dist/sass/'));
+     gulp.src('public/sass/**/*.scss')
+    .pipe(maps.init())
+    .pipe(sass().on('error', sass.logError))
+    .pipe(maps.write('./'))
+    .pipe(gulp.dest('public/dist/css'))
 });
 
+gulp.task('minifyCss', ['compileSass'], function () {
+    gulp.src('public/dist/**/*.css')
+        .pipe(cssmin())
+        .pipe(rename({suffix: '.min'}))
+        .pipe(gulp.dest('public/dist'));
+});
 // Define the default task as a sequence of the above tasks
 // gulp.task('default', ['clean', 'scripts', 'copy']);
 // gulp.task('default', ['clean', 'scripts', 'imagemin', 'copy']);
@@ -63,8 +79,8 @@ gulp.task('compileSass', function() {
 gulp.task('default', ['clean'], function() {
     // gulp.start('paths');
     gulp.start('uglifyAngular');
-    gulp.start('compileSass');
-    // gulp.start('scripts');
+    gulp.start('minifyCss');
+     // gulp.start('scripts');
     // gulp.start('imagemin');
     // gulp.start('copy');
     // gulp.start('sass');

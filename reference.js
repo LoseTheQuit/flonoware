@@ -60,8 +60,8 @@ var generateRandomString = function (length) {
 
     /************************************************************
      * Generates a random string containing numbers and letters
-     * @param  {number} length The length of the string 
-     * @return {string} The generated string 
+     * @param  {number} length The length of the string
+     * @return {string} The generated string
      ***********************************************************/
 
     var text = '';
@@ -361,13 +361,13 @@ app.post('/ig', function (req, res, next) {
         console.log('INSTAGRAM ACCESS_CODE NOT AVAILABLE'.white.bgRed);
 
         // if the access code IS NOT available
-        // STOP the process of making a call to the 
+        // STOP the process of making a call to the
         // instagram api
 
     } else {
 
         // if the access code IS available
-        // START the process of making a call to the 
+        // START the process of making a call to the
         // instagram api
 
         let ACCESS_CODE = req.body.token;
@@ -397,7 +397,7 @@ app.post('/ig', function (req, res, next) {
             var parsedBody = JSON.parse(body);
 
             //  console.log('*******************************************************'.black.bgRed);
-            //  console.log(parsedBody); 
+            //  console.log(parsedBody);
             //  console.log('*******************************************************'.black.bgRed);
 
             if (response.statusCode != 200) {
