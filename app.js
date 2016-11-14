@@ -30,7 +30,18 @@ if (ignitionSwitch) {
 }
 
 var db = mongojs(dbConnectionString, ['calexit']);
+var sass = require('node-sass');
+sass.render({
+  file: '/Users/clxxxii/Documents/dev/calexit/public/sass/index.scss',
+}, function(err, result) {
+  console.log(result)
+});
 
+// // OR
+// var result = sass.renderSync({
+//   data: '/Users/clxxxii/Documents/dev/calexit/public/sass/final'
+//
+// });
 app.use(cookieParser());
 
 app.use(bodyParser.json());
@@ -149,7 +160,7 @@ app.get('/homebrew', function(req, res) {
   })
 
 });
-app.post('/query', function(req, res) {
+app.post('/split-query', function(req, res) {
 
   console.log('\n');
   console.log('* CALEXIT - "FINDING THE YES\'S" POST REQUEST *'.black.bgWhite);
@@ -164,4 +175,56 @@ app.post('/query', function(req, res) {
 
     res.json(docs)
   });
+});
+
+app.post('/omni-query', function(req, res) {
+
+  console.log('\n');
+  console.log('******* turner - INCOMING GET REQUEST - Load Template *******'.black.bgWhite);
+  console.log('\n');
+
+  console.log('req.body.q: ' + req.body.q)
+
+  var regex = new RegExp(".*" + req.body.q + ".*", "i");
+  var xQuery = req.body.q;
+  // console.log(regex); // Hello this is !! some !! stuff.
+
+  // db.calexit.find({}, {
+  //   xQuery: 1
+  // }, function(err, docs) {
+  //   console.log(Object.keys(docs));
+  //   console.log(docs)
+  //   res.json(docs)
+  // })
+
+  // find everything, but sort by name
+  db.calexit.find().sort({
+    xQuery: 1
+  }, function(err, docs) {
+    // docs is now a sorted array
+    console.log(Object.keys(docs));
+    console.log(docs)
+    res.json(docs)
+  })
+
+  // db.calexit.find({
+  //   xQuery: {
+  //     '$exists': 1
+  //   }
+  // }, function(err, docs) {
+  //   console.log(Object.keys(docs));
+  //   console.log(docs)
+  //   res.json(docs)
+  // });
+
+  // db.calexit.find({
+  //   anwser: req.body.q
+  // }, function(err, docs) {
+  //
+  //   console.log(Object.keys(docs));
+  //   console.log(docs)
+  //
+  //   res.json(docs)
+  // });
+
 });

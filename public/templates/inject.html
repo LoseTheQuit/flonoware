@@ -1,4 +1,4 @@
- <div class="">
+<div class="">
 
     <!-- bodyOverlay -->
     <div class="container">
@@ -8,9 +8,9 @@
         </div>
 
         <div class="col-md-12">
-          <h2 class="robotoh2">When they go right, we go left!</h2>
+            <h2 class="robotoh2">When they go right, we go left!</h2>
             <h1 class="jumbo_text">#calexit</h1>
-
+            <input type="text" class="form-control del hide" ng-model="voteQuery" ng-change="getVoteWithQuery(voteQuery)"/>
             <button class="btn btn-primary del hide" ng-click="deleteAll()">
                 Del
             </button>
@@ -42,15 +42,32 @@
                     <p class="poll-question">Would you allow California to secede from the Union?</p>
                 </div>
 
-                <div class="col-md-4 poll-response">
-                    <div class="col-md-12  col-sm-6 col-xs-12 text-center">
+                <div class="col-md-4 poll-response display_flex">
+
+                    <div class="col-md-12 col-sm-6 col-xs-12 display_flex  flex-item-center">
+                        <div class="btn-group ghost-botton">
+                            <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">State</button>
+
+                            <div class="dropdown-menu" id="this" ng-click="fixedPosition()">
+                                <div class="" ng-repeat="state in statesArr">
+                                    <a class="dropdown-item" href="#">{{state.name}}
+                                    </a>
+
+                                    <div class="dropdown-divider"></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-md-12 col-sm-6 col-xs-12 display_flex  flex-item-center">
 
                         <button class="ghost-botton" ng-click="addVote('yes')">
                             YES
                         </button>
 
                     </div>
-                    <div class="col-md-12 col-sm-6 col-xs-12 text-center">
+                    <div class="col-md-12 col-sm-6 col-xs-12 display_flex flex-item-center">
                         <button class="ghost-botton" ng-click="addVote('no')">
                             NO
                         </button>
@@ -68,15 +85,14 @@
                         {{totalAmountOfItemsInThisColletection}}</h1>
                 </div>
                 <div class="col-xs-12">
-                  <p>for:
-                      {{totalYES}}</p>
+                    <p>for:
+                        {{totalYES}}</p>
                     <p>against:
                         {{totalNO}}</p>
 
                 </div>
             </div>
         </div>
-
 
         <!-- <div class="col-md-2" ng-repeat="vote in votes.data">
             <p>{{vote.answer}}</p>
