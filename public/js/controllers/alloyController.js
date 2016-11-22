@@ -170,7 +170,6 @@ app.controller('alloyController', function ($scope, $http, alloyService) {
 
         console.log($scope.coord)
 
-
         alloyService.postHomeBrew($scope.customCoordinates, function (response) {
 
             console.log("_________________________________");
@@ -179,7 +178,5 @@ app.controller('alloyController', function ($scope, $http, alloyService) {
         })
 
     }
-
-
 
 });
