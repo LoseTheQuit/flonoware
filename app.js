@@ -4,7 +4,7 @@ let fs = require('fs'),
     mongojs = require('mongojs'),
     colors = require('colors'),
     express = require('express'),
-    app = express(),   
+    app = express(),
     bodyParser = require('body-parser'),
     https = require('https'),
     http = require('http'),
@@ -31,6 +31,33 @@ if (ignitionSwitch) {
 
 var db = mongojs(dbConnectionString, ['gps']);
 
+var userID = "user-";
+var userIDCounter = 1;
+
+var randomiZer = function() {
+
+    var theNumbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+    var theAlphabets = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'];
+
+    var userIDNumericChar = '';
+    var userIDAlphaChar = '';
+    var binaryCounter = '';
+
+
+    for (var x = 0; x < 6; x++) {
+        binaryCounter = Math.round(Math.random() * 1);
+        if (binaryCounter == 0) {
+            userIDNumericChar = Math.round(Math.random() * (theNumbers.length - 1));
+            console.log(userIDNumericChar);
+            userID += userIDNumericChar;
+
+        } else {
+            userIDAlphaChar = Math.round(Math.random() * (theAlphabets.length - 1));
+            userID += theAlphabets[userIDAlphaChar].toUpperCase();
+        }
+    }
+
+}
 
 app.use(cookieParser());
 
@@ -44,7 +71,7 @@ app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.use('/node_modules', express.static(__dirname + '/node_modules'));
 app.use(express.static('public'));
 
-app.all('*', function (req, res, next) {
+app.all('*', function(req, res, next) {
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'PUT, GET, POST, DELETE, OPTIONS');
     res.header('Access-Control-Allow-Headers', 'Content-Type');
@@ -53,7 +80,7 @@ app.all('*', function (req, res, next) {
 
 app.set('port', (process.env.PORT || 5000));
 
-app.listen(app.get('port'), function () {
+app.listen(app.get('port'), function() {
 
     console.log('\n');
     console.log('********************************************'.black.bgWhite);
@@ -61,9 +88,19 @@ app.listen(app.get('port'), function () {
     console.log('********************************************'.black.bgWhite);
     console.log('\n');
 
+    setInterval(() => {
+        console.log('userIDCounter: ' + userIDCounter);
+        console.log('\n');
+        randomiZer();
+        console.log(userID);
+        console.log(userID.length);
+        userID = "user-";
+        userIDCounter++;
+    }, 1000)
+
 });
 
-app.get('/', function (req, res) {
+app.get('/', function(req, res) {
 
     console.log('\n');
     console.log('******* INCOMING GET REQUEST - Load Template *******'.black.bgWhite);
@@ -74,7 +111,7 @@ app.get('/', function (req, res) {
 
 });
 
-app.get('/outermost', function (req, res) {
+app.get('/outermost', function(req, res) {
 
     console.log('\n');
     console.log('******* INCOMING GET REQUEST - Load Template *******'.black.bgWhite);
@@ -82,7 +119,7 @@ app.get('/outermost', function (req, res) {
 
     db.gps.find().limit(1).sort({
         _id: -1
-    }, function (err, docs) {
+    }, function(err, docs) {
 
         console.log(docs);
         res.json(docs)
@@ -90,13 +127,13 @@ app.get('/outermost', function (req, res) {
 
 });
 
-app.get('/del-all', function (req, res) {
+app.get('/del-all', function(req, res) {
 
     console.log('\n');
     console.log('******* INCOMING del-all REQUEST - Load Template *******'.black.bgWhite);
     console.log('\n');
 
-    db.gps.remove(function (err, docs) {
+    db.gps.remove(function(err, docs) {
         if (err) {
             throw err;
         }
@@ -105,7 +142,7 @@ app.get('/del-all', function (req, res) {
 
 });
 
-app.get('/get-count', function (req, res) {
+app.get('/get-count', function(req, res) {
 
     console.log('\n');
     console.log('******* INCOMING db.gps.count() REQUEST - Load Template *******'.black.bgWhite);
@@ -117,20 +154,20 @@ app.get('/get-count', function (req, res) {
 
     var totalInCollection = db.gps.count({
 
-    }, function (err, docs) {
+    }, function(err, docs) {
         console.log(docs)
         res.json(docs);
     });
 
 });
 
-app.get('/homebrew', function (req, res) {
+app.get('/homebrew', function(req, res) {
 
     console.log('\n');
     console.log('******* INCOMING GET REQUEST - Load Template *******'.black.bgWhite);
     console.log('\n');
 
-    db.gps.find(function (err, docs) {
+    db.gps.find(function(err, docs) {
         // console.log(docs)
         res.json(docs)
 
@@ -138,7 +175,7 @@ app.get('/homebrew', function (req, res) {
 
 });
 
-app.post('/homebrew', function (req, res) {
+app.post('/homebrew', function(req, res) {
 
     console.log('\n');
     console.log('******* INCOMING POST REQUEST - Load Template *******'.black.bgWhite);
@@ -146,7 +183,7 @@ app.post('/homebrew', function (req, res) {
     // console.log(req.body); //
     console.log('\n');
 
-    db.gps.insert(req.body, function (err, docs) {
+    db.gps.insert(req.body, function(err, docs) {
 
         console.log(docs)
         res.json(docs)
@@ -155,7 +192,7 @@ app.post('/homebrew', function (req, res) {
 
 });
 
-app.delete('/homebrew/:id', function (req, res) {
+app.delete('/homebrew/:id', function(req, res) {
 
     let id = req.params.id;
     console.log('\n');
@@ -166,7 +203,7 @@ app.delete('/homebrew/:id', function (req, res) {
 
     db.gps.remove({
         _id: mongojs.ObjectId(id)
-    }, function (err, docs) {
+    }, function(err, docs) {
 
         console.log(docs)
         res.json(docs)
@@ -175,7 +212,7 @@ app.delete('/homebrew/:id', function (req, res) {
 
 });
 
-app.get('/homebrew/:id', function (req, res) {
+app.get('/homebrew/:id', function(req, res) {
 
     let id = req.params.id;
     console.log('\n');
@@ -186,14 +223,14 @@ app.get('/homebrew/:id', function (req, res) {
 
     db.gps.findOne({
         _id: mongojs.ObjectId(id)
-    }, function (err, docs) {
+    }, function(err, docs) {
         console.log(docs)
         res.json(docs);
     });
 
 });
 
-app.put('/homebrew/:id', function (req, res) {
+app.put('/homebrew/:id', function(req, res) {
 
     let id = req.params.id;
     console.log('\n');
@@ -219,7 +256,7 @@ app.put('/homebrew/:id', function (req, res) {
             }
         },
         new: true
-    }, function (err, docs) {
+    }, function(err, docs) {
         console.log(docs)
         res.json(docs);
     });
