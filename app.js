@@ -15,12 +15,25 @@ let fs = require('fs'),
     cookieParser = require('cookie-parser'),
     Client = require('node-rest-client').Client;
 
+
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+
+var options = {
+    key: fs.readFileSync('./fake-keys/privatekey.pem'),
+    cert: fs.readFileSync('./fake-keys/certificate.pem')
+};
+
 var serverPort = (process.env.PORT || 5000);
-
-
 var server;
+if (process.env.LOCAL) {
+    server = https.createServer(options, app);
+} else {
+    server = http.createServer(app);
+}
 var io = require('socket.io')(server);
-
 var roomList = {};
 
 
@@ -66,10 +79,24 @@ io.on('connection', function (socket) {
     });
 });
 
-var options = {
-    key: fs.readFileSync('./fake-keys/privatekey.pem'),
-    cert: fs.readFileSync('./fake-keys/certificate.pem')
-};
+
+
+
+
+server.listen(serverPort, function () {
+    //    if (process.env.LOCAL) {
+    //        open('https://localhost:' + serverPort)
+    //    }
+    console.log('\n');
+    console.log('********************************************'.black.bgWhite);
+    console.log("The frontend server is running on port 5000!".black.bgWhite);
+    console.log('********************************************'.black.bgWhite);
+    console.log('\n');
+});
+
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
+//////////////////////////////////////////////////////////////
 
 var client = new Client();
 
@@ -116,6 +143,8 @@ var randomiZer = function () {
 
 }
 
+
+
 app.use(cookieParser());
 
 app.use(bodyParser.json());
@@ -136,21 +165,6 @@ app.all('*', function (req, res, next) {
 });
 
 
-if (process.env.LOCAL) {
-    server = https.createServer(options, app);
-} else {
-    server = http.createServer(app);
-}
-server.listen(serverPort, function () {
-    if (process.env.LOCAL) {
-        open('https://localhost:' + serverPort)
-    }
-    console.log('\n');
-    console.log('********************************************'.black.bgWhite);
-    console.log("The frontend server is running on port 5000!".black.bgWhite);
-    console.log('********************************************'.black.bgWhite);
-    console.log('\n');
-});
 
 // DEPRECATED
 app.set('port', serverPort);
