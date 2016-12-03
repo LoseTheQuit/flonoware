@@ -76,6 +76,14 @@
         margin-bottom: 20px;
     }
 */
+    
+    .fixed-bottom {
+        position: fixed;
+        bottom: 50px;
+        left: 0;
+        width: 100%;
+        text-align: center;
+    }
 </style>
 
 
@@ -103,10 +111,13 @@
                 <div class="col-lg-3 center-content">
                     <div id="textRoom" style="display: none;">
                         <div id="textRoomContent">
-                            <h3>Text Room</h3>
+                            <h3>Chat: </h3>
                         </div>
-                        <input id="textRoomInput">
-                        <button onclick="textRoomPress();">Send</button>
+                        <div class="fixed-bottom">
+                            <input id="textRoomInput">
+                            <button onclick="textRoomPress();">Send</button>
+                        </div>
+
                     </div>
                 </div>
 
