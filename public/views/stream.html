@@ -81,6 +81,7 @@
         position: fixed;
         bottom: 50px;
         left: 0;
+        right: 50;
         width: 100%;
         text-align: center;
     }
@@ -102,7 +103,8 @@
                 </div>
 
                 <div class="col-lg-12 center-content">
-                    <video id="selfView" class="selfView" autoplay></video>
+                    <input id="textRoomInput">
+                    <button onclick="textRoomPress();">Send</button>
                 </div>
 
                 <div class="col-lg-9 center-content">
@@ -114,8 +116,9 @@
                             <h3>Chat: </h3>
                         </div>
                         <div class="fixed-bottom">
-                            <input id="textRoomInput">
-                            <button onclick="textRoomPress();">Send</button>
+
+                            <video id="selfView" class="selfView" autoplay></video>
+
                         </div>
 
                     </div>
