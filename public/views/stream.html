@@ -4,25 +4,116 @@
 <head>
     <title>flonoware-webrtc server</title>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,200,400,500,700,800">
+    <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+
 </head>
 
-<body>
-    <div id="textRoom" style="display: none;">
-        <div id="textRoomContent">
-            <h3>Text Room</h3>
+
+<style>
+    * {
+        font-family: 'Roboto', monospace;
+    }
+    
+    #textRoom {
+        padding: 0px;
+    }
+    
+    .theBody {
+        width: 100%;
+        height: 100vh;
+        font-family: 'Roboto', sans-serif;
+        margin: 0;
+        overflow: auto;
+        display: table;
+        /*background: url('http://img15.deviantart.net/177b/i/2014/084/d/8/web_developer_wallpaper__code__by_plusjack-d7bmt54.jpg') no-repeat center;*/
+        background: #00a3e0;
+        background-size: cover;
+        color: #fff;
+        color: #444;
+    }
+    
+    .overlay {
+        background: rgba(0, 0, 0, .75);
+        width: 100%;
+        height: 100vh;
+        height: 100%;
+    }
+    /*.full-page-content {
+        width: 100%;
+        height: 100vh;
+    }*/
+    
+    #roomIDContainer {
+        height: 20vh;
+    }
+    
+    .selfView {
+        width: 100%;
+        height: 80vh;
+    }
+    
+    .remoteViewContainer {
+        width: 100%;
+        height: 100vh;
+    }
+    
+    .display-flex {
+        display: flex;
+    }
+    
+    .center-content {
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+    /*
+    #roomID {
+        margin-bottom: 20px;
+    }
+*/
+</style>
+
+
+<body ng-app="main">
+
+    <div class="theBody">
+        <div class="overlay">
+
+
+            <div class="container">
+
+                <div id="textRoom" style="display: none;">
+                    <div id="textRoomContent">
+                        <h3>Text Room</h3>
+                    </div>
+                    <input id="textRoomInput">
+                    <button onclick="textRoomPress();">Send</button>
+                </div>
+
+                <div id="roomIDContainer" class="display-flex col-lg-12 center-content">
+                    <input id="roomID">
+                    <br/>
+                    <button onclick="press();">Join/Create room</button>
+                </div>
+
+
+                <video id="selfView" class="selfView" autoplay></video>
+
+                <div id="remoteViewContainer"></div>
+
+
+            </div>
         </div>
-        <input id="textRoomInput">
-        <button onclick="textRoomPress();">Send</button>
-    </div>
-    <video id="selfView" autoplay></video>
-    <div id="remoteViewContainer"></div>
-    <div id="roomIDContainer">
-        <input id="roomID">
-        <button onclick="press();">Join/Create room</button>
     </div>
 </body>
 
-<script src="../js/socket-io/socket.js"></script>
-<script src="../js/socket-io/socket-client.js"></script>
+
+<script src="../js/socket-io/socket.js "></script>
+<script src="../js/socket-io/socket-client.js "></script>
 
 </html>
