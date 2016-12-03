@@ -56,12 +56,11 @@
         width: 100%;
         height: 80vh;
     }
-    /*
+    
     .remoteViewContainer video {
         width: 100%;
         height: 100vh;
     }
-    */
     
     .display-flex {
         display: flex;
@@ -94,10 +93,13 @@
                     <button onclick="press();">Join/Create room</button>
                 </div>
 
-                <div class="col-lg-9 center-content">
+                <div class="col-lg-12 center-content">
                     <video id="selfView" class="selfView" autoplay></video>
                 </div>
 
+                <div class="col-lg-9 center-content">
+                    <div id="remoteViewContainer"></div>
+                </div>
                 <div class="col-lg-3 center-content">
                     <div id="textRoom" style="display: none;">
                         <div id="textRoomContent">
@@ -108,7 +110,6 @@
                     </div>
                 </div>
 
-                <div id="remoteViewContainer" class="col-lg-12"></div>
 
             </div>
         </div>
