@@ -87,25 +87,27 @@
 
             <div class="container">
 
-                <div id="textRoom" style="display: none;">
-                    <div id="textRoomContent">
-                        <h3>Text Room</h3>
-                    </div>
-                    <input id="textRoomInput">
-                    <button onclick="textRoomPress();">Send</button>
-                </div>
-
                 <div id="roomIDContainer" class="display-flex col-lg-12 center-content">
                     <input id="roomID">
                     <br/>
                     <button onclick="press();">Join/Create room</button>
                 </div>
 
+                <div id="roomIDContainer" class="col-lg-9 center-content">
+                    <video id="selfView" class="selfView" autoplay></video>
+                </div>
 
-                <video id="selfView" class="selfView" autoplay></video>
+                <div id="roomIDContainer" class="col-lg-3 center-content">
+                    <div id="textRoom" style="display: none;">
+                        <div id="textRoomContent">
+                            <h3>Text Room</h3>
+                        </div>
+                        <input id="textRoomInput">
+                        <button onclick="textRoomPress();">Send</button>
+                    </div>
+                </div>
 
                 <div id="remoteViewContainer"></div>
-
 
             </div>
         </div>
