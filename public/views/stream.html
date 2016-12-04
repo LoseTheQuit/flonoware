@@ -262,12 +262,19 @@
 
         console.log("ready!");
         joinRoomInput = $('.roomID');
+        var footer = $('.footer');
+
+
 
         $('.joinRoom').click(function () {
             if (joinRoomInput.val !== "") {
                 $('.footer').css({
                     display: 'block'
                 })
+                $('.overlay').css({
+                    'padding-bottom': footer.height()
+                });
+
             }
         });
     });
