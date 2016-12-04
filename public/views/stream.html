@@ -7,8 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
-    <link rel="canonical" href="flonoware.herokuapp.com/" />
-
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,200,400,500,700,800">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
@@ -28,13 +26,13 @@
     
     .theBody {
         width: 100%;
-        height: auto;
+        /*        height: 100vh;*/
         font-family: 'Roboto', sans-serif;
         margin: 0;
         overflow: auto;
         display: block;
         /*background: url('http://img15.deviantart.net/177b/i/2014/084/d/8/web_developer_wallpaper__code__by_plusjack-d7bmt54.jpg') no-repeat center;*/
-        background: #00a3e0;
+        /*        background: #00a3e0;*/
         background-size: cover;
         color: #fff;
         color: #444;
@@ -48,7 +46,6 @@
         z-index: -100;
         display: block;
         background-image: url('https://timedotcom.files.wordpress.com/2015/01/blm.jpg');
-        /*        background-image: url('../img/sanFran.jpg');*/
         width: 100%;
         height: 100vh;
         background-size: cover;
@@ -59,7 +56,6 @@
     .theBody {
         position: relative;
         z-index: 0;
-        color: #fff;
         font-family: 'Roboto', sans-serif;
         background: #1e5799;
         align-items: center;
@@ -69,13 +65,8 @@
     }
     
     .overlay {
-        /*        background: rgba(0, 0, 0, .75);*/
+        background: rgba(0, 0, 0, .75);
         width: 100%;
-        height: 100vh;
-        height: 100%;
-    }
-    
-    #roomIDContainer {
         height: 100vh;
     }
     
@@ -84,9 +75,26 @@
         height: auto;
     }
     
+    #remoteViewContainer {
+        display: flex;
+        /*        height: 100%;*/
+        flex-direction: column;
+    }
+    
     .remoteViewContainer video {
         width: 100;
         height: 100vh;
+    }
+    
+    #roomIDContainer {
+        height: 100vh;
+        /*        display: none;*/
+        /*
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+*/
     }
     
     .display-flex {
@@ -111,22 +119,27 @@
     
     .footer {
         display: none;
-        /* display: block;*/
+        /*        display: block;*/
         position: absolute;
         bottom: 0;
         width: 100%;
         /* Set the fixed height of the footer here */
-        /*        max-height: 60px;*/
+        /*        max-height  : 60px;*/
         background-color: #f5f5f5;
     }
     
     .textChatWindow {
-        padding: 25px;
-        height: 175px;
+        /*        padding: 25px;*/
+        height: 250px;
         width: 100%;
-        border: 1px solid #ccc;
+        /*        border: 1px solid #ccc;*/
         font: 16px/26px Georgia, Garamond, Serif;
         overflow: auto;
+    }
+    
+    .textChatWindowMargin {
+        margin-top: 50px;
+        margin-bottom: 50px;
     }
     
     .videoChatWindow {
@@ -136,6 +149,20 @@
     
     .textRoomInput {
         width: 100%
+    }
+    
+    .join label {
+        color: white;
+    }
+    
+    .join input {
+        border: white;
+        color: white;
+        background-image: -webkit-linear-gradient(bottom, #009688 2px, rgba(255, 255, 255, 0) 0), -webkit-linear-gradient(bottom, rgba(255, 255, 255, .26) 1px, transparent 0);
+    }
+    
+    #inner-editor {
+        color: white;
     }
     /*
     @media screen and (max-width: 768px) {
@@ -160,20 +187,26 @@
 
             <div class="container">
                 <div id="roomIDContainer" class="display-flex col-lg-12 center-content">
-                    <input id="roomID">
-                    <br/>
-                    <button class="joinRoom btn-lg.btn-block.btn-raised" onclick="press();">Join/Create room</button>
+
+                    <div class="join form-group label-floating text-center">
+                        <label class="control-label" for="roomID">Enter roomID#</label>
+                        <br/>
+                        <input class="form-control" id="roomID" type="text">
+                        <!--  class="form-control" -->
+                        <br/>
+                        <button class="joinRoom btn-lg btn-info btn-raised" onclick="press();">Join/Create room</button>
+                    </div>
+
                 </div>
 
                 <div class="col-lg-6 center-content">
                     <div id="remoteViewContainer"></div>
                 </div>
-
             </div>
 
         </div>
 
-        <!-- <video id="selfView" class="selfView" autoplay></video>-->
+        <!--        <video id="selfView" class="selfView" autoplay></video>-->
 
         <footer class="footer">
             <div class="container">
@@ -190,14 +223,32 @@
                         -->
 
                         <div class="col-lg-3 videoChatWindow">
-                            <video id="selfView" class="selfView" autoplay></video>
-                            <input id="textRoomInput">
-                            <button onclick="textRoomPress();">Send</button>
-                        </div>
-                        <div class="col-lg-9">
-                            <h3>Chat: </h3>
+                            <div class="panel panel-info">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Broadcast</h3>
+                                </div>
+                                <div class="panel-body">
 
-                            <div id="textRoomContent" class="textChatWindow"></div>
+                                    <video id="selfView" class="selfView" autoplay></video>
+                                    <div class="form-group label-floating">
+                                        <input class="form-control" id="textRoomInput" type="text">
+                                    </div>
+                                    <button class="joinRoom btn-lg btn-block btn-success btn-raised" onclick="textRoomPress();">Send</button>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <div class="col-lg-9">
+                            <div class="panel panel-info textChatWindowMargin">
+                                <div class="panel-heading">
+                                    <h3 class="panel-title">Chat</h3>
+                                </div>
+                                <div class="panel-body">
+                                    <div id="textRoomContent" class="textChatWindow"></div>
+                                </div>
+                            </div>
+
                         </div>
                     </div>
                 </div>
@@ -215,7 +266,7 @@
 
 <script>
     $(document).ready(function () {
-        $.material.init()
+
         console.log("ready!");
         joinRoomInput = $('.roomID');
 
