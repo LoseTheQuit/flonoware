@@ -168,35 +168,34 @@ app.controller('alloyController', function ($scope, $http, alloyService) {
 
     }
 
+    $scope.simulateBroadCast = function () {
 
-    //    setTimeout(function() {
-    //
-    //        setInterval(function() {
-    //
-    //
-    //            $scope.high = 180;
-    //            $scope.lo = -150;
-    //            $scope.randomLat = Math.floor((Math.random() * $scope.high) + $scope.lo);
-    //            $scope.randomLong = Math.floor((Math.random() * $scope.high) + $scope.lo);
-    //
-    //            $scope.customCoordinates = {
-    //                lat: $scope.randomLat,
-    //                long: $scope.randomLong,
-    //                userID: randomiZer()
-    //            }
-    //
-    //            // console.info('Lat: ' + $scope.randomLat + ' Long: ' + $scope.randomLong);
-    //
-    //            $scope.collectionPlate();
-    //            if ($scope.totalAmountOfItemsInThisColletection <= 100) {
-    //                $scope.customAdd();
-    //            } else {
-    //                $scope.deleteAll();
-    //            }
-    //
-    //        }, 10000);
-    //
-    //    }, 1000);
+
+        setInterval(function () {
+
+            $scope.high = 180;
+            $scope.lo = -150;
+            $scope.randomLat = (Math.random() * $scope.high) + $scope.lo;
+            $scope.randomLong = (Math.random() * $scope.high) + $scope.lo;
+
+            $scope.customCoordinates = {
+                lat: $scope.randomLat,
+                long: $scope.randomLong,
+                userID: randomiZer()
+            }
+
+            $scope.collectionPlate();
+            if ($scope.totalAmountOfItemsInThisColletection <= 100) {
+                $scope.customAdd();
+            } else {
+                $scope.deleteAll();
+            }
+
+        }, 10000);
+
+
+    };
+
 
     $scope.customAdd = function () {
 

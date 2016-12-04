@@ -7,9 +7,12 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
+    <link rel="canonical" href="flonoware.herokuapp.com/" />
+
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway:100,200,400,500,700,800">
     <link href='https://fonts.googleapis.com/css?family=Roboto' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="/bower_components/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bower_components/bootstrap-material-design/dist/bootstrap-material-design.min.css">
 
 </head>
 
@@ -25,7 +28,7 @@
     
     .theBody {
         width: 100%;
-        height: 100vh;
+        height: auto;
         font-family: 'Roboto', sans-serif;
         margin: 0;
         overflow: auto;
@@ -37,15 +40,43 @@
         color: #444;
     }
     
+    .theBody:before {
+        content: "";
+        position: fixed;
+        left: 0;
+        right: 0;
+        z-index: -100;
+        display: block;
+        background-image: url('https://timedotcom.files.wordpress.com/2015/01/blm.jpg');
+        /*        background-image: url('../img/sanFran.jpg');*/
+        width: 100%;
+        height: 100vh;
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: 100% 0%;
+    }
+    
+    .theBody {
+        position: relative;
+        z-index: 0;
+        color: #fff;
+        font-family: 'Roboto', sans-serif;
+        background: #1e5799;
+        align-items: center;
+        margin: 0 auto;
+        text-shadow: 0 10px 30px rgba(0, 0, 0, .25);
+        font-weight: lighter;
+    }
+    
     .overlay {
-        background: rgba(0, 0, 0, .75);
+        /*        background: rgba(0, 0, 0, .75);*/
         width: 100%;
         height: 100vh;
         height: 100%;
     }
     
     #roomIDContainer {
-        height: 20vh;
+        height: 100vh;
     }
     
     .selfView {
@@ -131,7 +162,7 @@
                 <div id="roomIDContainer" class="display-flex col-lg-12 center-content">
                     <input id="roomID">
                     <br/>
-                    <button class="joinRoom" onclick="press();">Join/Create room</button>
+                    <button class="joinRoom btn-lg.btn-block.btn-raised" onclick="press();">Join/Create room</button>
                 </div>
 
                 <div class="col-lg-6 center-content">
@@ -142,7 +173,7 @@
 
         </div>
 
-        <!--        <video id="selfView" class="selfView" autoplay></video>-->
+        <!-- <video id="selfView" class="selfView" autoplay></video>-->
 
         <footer class="footer">
             <div class="container">
@@ -180,10 +211,11 @@
 <script src="../js/socket-io/socket.js"></script>
 <script src="../js/socket-io/socket-client.js"></script>
 <script src="/bower_components/jquery/dist/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <script>
     $(document).ready(function () {
-
+        $.material.init()
         console.log("ready!");
         joinRoomInput = $('.roomID');
 
