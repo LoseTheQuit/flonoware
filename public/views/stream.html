@@ -249,15 +249,16 @@ $(document).ready(function() {
 
     $(document).keypress("I", function(e) {
         if (e.ctrlKey && e.keyCode == 49) {
-            $('.footer').removeClass('hide');
+            $('.footer').addClass('hide');
         }
     });
 
     $(document).keypress("I", function(e) {
         if (e.ctrlKey && e.keyCode == 50) {
-            $('.footer').addClass('hide');
+            $('.footer').removeClass('hide');
         }
     });
+
 
     $('.joinRoom').click(function() {
         if (joinRoomInput.val !== "") {
