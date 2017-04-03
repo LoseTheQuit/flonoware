@@ -195,9 +195,6 @@ var result = captured ? captured : '0';
 
 console.log(result)
 
-if (result > 0) {
-
-}
 setTimeout(() => {
   join(result)
 }, 1000)
