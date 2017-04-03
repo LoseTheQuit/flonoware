@@ -258,8 +258,12 @@ $(document).ready(function() {
             $('.footer').removeClass('hide');
         }
     });
-
-
+    $('.footer').css({
+        display: 'block'
+    })
+    $('.overlay').css({
+        'padding-bottom': footer.height()
+    });
     $('.joinRoom').click(function() {
         if (joinRoomInput.val !== "") {
             $('.footer').css({
