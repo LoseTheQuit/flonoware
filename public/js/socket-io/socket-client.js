@@ -196,8 +196,12 @@ var result = captured ? captured : '0';
 console.log(result)
 
 if (result > 0) {
-  join(result)
+
 }
+setTimeout(() => {
+  join(result)
+}, 1000)
+
 
 function textRoomPress() {
   var text = document.getElementById('textRoomInput').value;
